@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## **HOMR**
 
-## Getting Started
+### **A Real Estate Web Platform** 🏠
 
-First, run the development server:
+Homr is built with the [Next.js](https://nextjs.org/) framework bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) utilizing the frameworks full stack features.
+
+### ⚡ **Getting Started**
+
+Make sure you have nodejs installed by running the following command:
+
+```bash
+node -v
+```
+
+If the output is not the version of your nodejs installation, install nodejs from [here](https://nodejs.org/en/download/)
+
+### ⏳ **Installing Packages**
+
+To run application on local environment you need to install the dependencies.
+
+```bash
+npm install
+```
+
+### 💾 **Starting the Development Server**
+
+To start the whole application server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🔨 **Building** 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npm build
+```
 
-## Learn More
+### 💻 **Editor setup**
 
-To learn more about Next.js, take a look at the following resources:
+I used eslint for js linting, and prettier for code formating, make sure you install eslint and prettier plugins in your editor so you can
+see linting errors as you code and have your code formatted on save by prettier. If formatOnSave doesn't work you can google how to set up
+format on save for the eslint & prettier plugins in your editor 🙃
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🔔 **Important Notice** 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+HOMR is built for the purpose of showcasing📷 my skill as web developer. HOMR Is not a real website✌️.
