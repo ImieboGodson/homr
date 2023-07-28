@@ -42,7 +42,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <IoIosArrowDown size={18} />
         </div>
         {dropMenu.isOpen && (
-          <div className="absolute right-0 top-12 md:w-[60%] w-[40vw] py-2 flex flex-col rounded-lg shadow-lg">
+          <div className="absolute right-0 top-12 md:w-[60%] w-[40vw] py-2 flex flex-col bg-white rounded-lg shadow-lg">
             {currentUser ? (
               <>
                 <div className="pb-2 font-bold">
