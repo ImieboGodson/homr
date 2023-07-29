@@ -6,16 +6,9 @@ import Link from "next/link";
 interface PostCardProps {
   image: string;
   title: string;
-  category?: string;
-  date?: Date;
 }
 
-const PostCard: React.FC<PostCardProps> = ({
-  image,
-  title,
-  category,
-  date,
-}) => {
+const PostCard: React.FC<PostCardProps> = ({ image, title }) => {
   return (
     <Link href="/" className="cols-span-1">
       <div className="flex flex-col gap-6 items-center rounded-lg overflow-hidden">

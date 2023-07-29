@@ -22,17 +22,14 @@ const HomeClient = () => {
               <PostCard
                 image="/images/post-1.jpg"
                 title="BestLife magazine reveils best cities to enjoy biking and walks."
-                date={new Date()}
               />
               <PostCard
                 image="/images/post-2.jpg"
                 title="How to write a listing description that works"
-                date={new Date()}
               />
               <PostCard
                 image="/images/post-3.jpg"
                 title="Evaluating your listing and coming up with the best price for and your client"
-                date={new Date()}
               />
             </div>
           </div>
