@@ -1,12 +1,7 @@
-import Image from "next/image";
-import Container from "./components/Container";
+import HomeClient from "./HomeClient";
 
 const Home = async () => {
-  return (
-    <Container>
-      <div>WELCOME TO HOMR</div>
-    </Container>
-  );
+  return <HomeClient />;
 };
 
 export default Home;
