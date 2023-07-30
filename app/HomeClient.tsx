@@ -5,15 +5,46 @@ import { BsArrowUpRight } from "react-icons/bs";
 import Container from "./components/Container";
 import Button from "./components/Button";
 import PostCard from "./components/cards/PostCard";
+import InquiryForm from "./components/InquiryForm";
 
 const HomeClient = () => {
   return (
     <div className="flex flex-col">
       <section className="bg-white my-20">
         <Container>
-          <div className="px-32 flex flex-col items-center gap-8">
+          <div className="px-32 grid grid-cols-1 md:grid-cols-2 gap-32">
+            <div className="col-span-1 py-3 flex flex-col gap-8 items-start">
+              <div className="flex flex-col items-start gap-1">
+                <div className="text-2xl font-extrabold">
+                  Property inquiry form
+                </div>
+                <div className="text-sm font-medium">
+                  Feel free to communicate your needs to us.
+                </div>
+              </div>
+              <div className="w-full flex flex-col gap-4 items-start">
+                <InquiryForm />
+              </div>
+            </div>
+            <div className="rounded-lg col-span-1 h-[100vh]">
+              <div className="w-full h-full relative rounded-lg overflow-hidden">
+                <Image
+                  src="/images/interior-design.jpg"
+                  alt="picture of interior design"
+                  className="h-full w-full object-cover"
+                  fill
+                />
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-white my-20">
+        <Container>
+          <div className="px-32 flex flex-col items-center gap-12">
             <div className="flex flex-col gap-2 items-center">
-              <div className="text-2xl font-bold">Resources and tips</div>
+              <div className="text-2xl font-extrabold">Resources and tips</div>
               <div className="text-sm">
                 Digest various views on all things real estate.
               </div>
@@ -37,9 +68,9 @@ const HomeClient = () => {
       </section>
 
       <section className="bg-white pt-20">
-        <div className="relative   bg-[#FFECEF]">
+        <div className="relative bg-[#FFECEF]">
           <Container>
-            <div className="w-full h-[50vh] px-12 flex flex-row justify-between items-center">
+            <div className="w-full h-[50vh] px-32 flex flex-row justify-between items-center">
               <div className="flex flex-col gap-2 items-start">
                 <h2 className="text-2xl font-extrabold">
                   Become A Real Estate Agent
@@ -56,7 +87,7 @@ const HomeClient = () => {
                   />
                 </div>
               </div>
-              <div className="absolute right-32 bottom-0 overflow-hidden">
+              <div className="absolute right-48 bottom-0 overflow-hidden">
                 <Image
                   src="/images/man.png"
                   width={260}
