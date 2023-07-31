@@ -6,10 +6,53 @@ import Container from "./components/Container";
 import Button from "./components/Button";
 import PostCard from "./components/cards/PostCard";
 import InquiryForm from "./components/InquiryForm";
+import CustomerCard from "./components/cards/CustomerCard";
 
 const HomeClient = () => {
   return (
     <div className="flex flex-col">
+      <section className="bg-neutral-100 my-4">
+        <Container>
+          <div className="px-32 py-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="col-span-2 self-center py-3 flex flex-col items-start gap-12">
+              <div className="flex flex-col items-start gap-1">
+                <div className="text-2xl font-extrabold">
+                  More than 10 years of experience
+                </div>
+                <div className="text-sm">
+                  When it comes to giving you what you want, we own this game.
+                </div>
+              </div>
+              <div className="w-full grid grid-cols-3 gap-6">
+                <div className="col-span-1 flex flex-col gap-1 items-start">
+                  <div className="text-2xl font-extrabold">85%</div>
+                  <div className="text-xs">Completed Property</div>
+                </div>
+                <div className="col-span-1 flex flex-col gap-1 items-start">
+                  <div className="text-2xl font-extrabold">99%</div>
+                  <div className="text-xs">Satisfied Customer</div>
+                </div>
+                <div className="col-span-1 flex flex-col gap-1 items-start">
+                  <div className="text-2xl font-extrabold">95%</div>
+                  <div className="text-xs">Home Ownership</div>
+                </div>
+              </div>
+            </div>
+            <div className="col-span-1 self-center py-1 flex flex-row items-center justify-center">
+              <div className="w-full">
+                <CustomerCard
+                  title="Great Team"
+                  body="The team at Homr is just incredible and they move fast to get you what you want and just how you want it. They are just special people doing special things."
+                  rating={3}
+                  name="Chu Leng"
+                  position="CEO, Mackro inc."
+                />
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       <section className="bg-white my-20">
         <Container>
           <div className="px-32 grid grid-cols-1 md:grid-cols-2 gap-32">

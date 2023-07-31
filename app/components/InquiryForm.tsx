@@ -8,6 +8,7 @@ import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 
 const InquiryForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [errorId, setErrorId] = useState("");
 
   const {
     register,
@@ -46,14 +47,14 @@ const InquiryForm = () => {
     setIsLoading(true);
 
     console.log(data);
-    console.log(errors);
-    // reset();
+    reset();
     setIsLoading(false);
   };
 
   return (
     <div className="w-full flex flex-col gap-4 items-between">
       <TextSelect
+        id="inquiryType"
         type="inquiry"
         title="Inquiry type"
         value={inquiryType}
@@ -65,6 +66,7 @@ const InquiryForm = () => {
       <div className="flex flex-row gap-6 items-center justify-end">
         <div className="w-[35%]">
           <TextSelect
+            id="prefix"
             type="prefix"
             title="Title"
             placeholder="select"
@@ -94,6 +96,7 @@ const InquiryForm = () => {
         required
       />
       <TextSelect
+        id="role"
         type="role"
         title="Personnel role"
         value={role}

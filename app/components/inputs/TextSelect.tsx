@@ -15,6 +15,7 @@ const defaultOptions = [
 ];
 
 interface TextSelectProps {
+  id: string;
   type: string;
   value?: optionValue;
   title?: string;
@@ -24,6 +25,7 @@ interface TextSelectProps {
 }
 
 const TextSelect: React.FC<TextSelectProps> = ({
+  id,
   value,
   title,
   type,
@@ -57,6 +59,7 @@ const TextSelect: React.FC<TextSelectProps> = ({
       {title && <div className="text-base font-bold">{title}</div>}
       <div className="w-full">
         <Select
+          id={id}
           placeholder={placeholder || "--choose an option--"}
           defaultValue={null}
           value={value}
@@ -65,7 +68,6 @@ const TextSelect: React.FC<TextSelectProps> = ({
           isDisabled={isDisabled}
           classNames={{
             placeholder: () => "text-sm",
-            control: () => "hidden",
           }}
           theme={(theme) => ({
             ...theme,
