@@ -9,13 +9,72 @@ import Button from "./components/Button";
 import PostCard from "./components/cards/PostCard";
 import InquiryForm from "./components/InquiryForm";
 import CustomerCard from "./components/cards/CustomerCard";
+import Heading from "./components/Heading";
+import ListingCard from "./components/cards/ListingCard";
+import { useRouter } from "next/navigation";
+import CityCard from "./components/cards/CityCard";
 
 const HomeClient = () => {
+  const router = useRouter();
   return (
     <div className="flex flex-col">
-      <section className="bg-white my-6">
+      <section className="bg-white my-2">
         <Container>
-          <div className="px-32 py-20">ANOTHER ONE</div>
+          <div className="px-32 py-8">
+            <div className="w-full flex flex-col gap-14 items-center">
+              <Heading
+                title="Properties by Cities"
+                subtitle="We have top-tier listings in every city that matters."
+                secondayAction
+              >
+                <div
+                  onClick={() => router.push("/listings/cities")}
+                  className="flex flex-row gap-1 items-center justify-between cursor-pointer"
+                >
+                  <div className="text-sm font-extrabold">See all cities</div>
+                  <BsArrowUpRight size={16} />
+                </div>
+              </Heading>
+              <div className="w-full grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+                <CityCard />
+                <CityCard />
+                <CityCard />
+                <CityCard />
+                <CityCard />
+                <CityCard />
+                <CityCard />
+                <CityCard />
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+      <section className="bg-white my-2">
+        <Container>
+          <div className="px-32 py-20">
+            <div className="w-full flex flex-col gap-14 items-center">
+              <Heading
+                title="Latest Properties"
+                subtitle="Get the best of the latest listing around the world."
+                secondayAction
+              >
+                <div className="w-[20%] flex flex-row gap-2 items-center justify-between">
+                  <Button title="For Sale" onClick={() => {}} />
+                  <Button title="For Rent" onClick={() => {}} outline />
+                </div>
+              </Heading>
+              <div className="w-full grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+                <ListingCard />
+                <ListingCard />
+                <ListingCard />
+                <ListingCard />
+                <ListingCard />
+                <ListingCard />
+                <ListingCard />
+                <ListingCard />
+              </div>
+            </div>
+          </div>
         </Container>
       </section>
       <section className="bg-white">
