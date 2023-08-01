@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { BsArrowUpRight } from "react-icons/bs";
+import { TbUserStar, TbMoneybag, TbSmartHome } from "react-icons/tb";
+import { PiKey } from "react-icons/pi";
 import Container from "./components/Container";
 import Button from "./components/Button";
 import PostCard from "./components/cards/PostCard";
@@ -11,6 +13,90 @@ import CustomerCard from "./components/cards/CustomerCard";
 const HomeClient = () => {
   return (
     <div className="flex flex-col">
+      <section className="bg-white my-6">
+        <Container>
+          <div className="px-32 py-20">ANOTHER ONE</div>
+        </Container>
+      </section>
+      <section className="bg-white">
+        <Container>
+          <div className="px-32 py-20 grid grid-cols-1 md:grid-cols-2 gap-24">
+            <div className="relative rounded-lg col-span-1 h-[80vh]">
+              <div className="absolute bottom-6 right-[-15%] p-4 text-xs rounded-lg bg-white shadow z-20 transition animate-custom-bounce">
+                <div className="w-full flex flex-row gap-2 items-center">
+                  <div className="p-3 rounded-full text-white bg-[#EF6262]">
+                    <TbSmartHome size={23} />
+                  </div>
+                  <div className="flex flex-col gap-[2px] items-start">
+                    <div className="text-xs font-thin">Total Rent</div>
+                    <div className="text-sm font-extrabold">4,382 Units</div>
+                  </div>
+                </div>
+              </div>
+              <div className="w-full h-full relative rounded-lg overflow-hidden">
+                <Image
+                  src="/images/home.jpg"
+                  alt="picture of house"
+                  className="h-full w-full object-cover"
+                  fill
+                />
+              </div>
+            </div>
+            <div className="col-span-1 self-center ">
+              <div className="w-[86%] flex flex-col gap-8 items-start">
+                <div className="flex flex-col gap-1 items-start">
+                  <div className="text-2xl font-extrabold">Why choose us?</div>
+                  <div className="text-xs">
+                    Let us show you what we can do for you.
+                  </div>
+                </div>
+                <div className="flex flex-col items-start gap-5">
+                  <div className="flex flex-row gap-5 items-start justify-start">
+                    <div className="rounded-full p-4 bg-[#ef626218] text-[#EF6262]">
+                      <TbUserStar size={18} />
+                    </div>
+                    <div className="flex flex-col gap-1.5 items-start">
+                      <div className="text-sm font-bold">
+                        Property Management
+                      </div>
+                      <div className="text-xs leading-5">
+                        We will handle all the work to deliever to you your
+                        dreams, you just come up with the idea.
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-row gap-5 items-start justify-start">
+                    <div className="rounded-full p-4 bg-[#ef626218] text-[#EF6262]">
+                      <PiKey size={18} />
+                    </div>
+                    <div className="flex flex-col gap-1.5 items-start">
+                      <div className="text-sm font-bold">Mortgage Services</div>
+                      <div className="text-xs leading-5">
+                        We always make sure that our clients get the best
+                        mortgage structure for their properties.
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-row gap-5 items-start justify-start">
+                    <div className="rounded-full p-4 bg-[#ef626218] text-[#EF6262]">
+                      <TbMoneybag size={18} />
+                    </div>
+                    <div className="flex flex-col gap-1.5 items-start">
+                      <div className="text-sm font-bold">Currency Services</div>
+                      <div className="text-xs leading-5">
+                        We make sure that nothing stands in your path to getting
+                        the home of your dreams, not even currency
+                        fluctuations/variations.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       <section className="bg-neutral-100 my-4">
         <Container>
           <div className="px-32 py-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
