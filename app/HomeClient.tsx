@@ -13,11 +13,87 @@ import Heading from "./components/Heading";
 import ListingCard from "./components/cards/ListingCard";
 import { useRouter } from "next/navigation";
 import CityCard from "./components/cards/CityCard";
+import HeroSearch from "./components/HeroSearch";
 
 const HomeClient = () => {
   const router = useRouter();
   return (
     <div className="flex flex-col">
+      <section className="h-screen bg-white pb-12">
+        <div className="bg-[#ef626218]">
+          <Container>
+            <div className="w-full px-32 h-[70vh] grid grid-cols-3 grid-rows-1 gap-4">
+              <div className="col-span-2 row-span-1 flex flex-col items-start justify-center border">
+                <div className="w-full flex flex-col gap-6 items-start justify-center">
+                  <div className="text-4xl font-extrabold w-[78%]">
+                    Finding the perfect place for you just got so much easier.
+                  </div>
+                  <div className="w-full">
+                    <HeroSearch />
+                  </div>
+                </div>
+              </div>
+              <div className="col-span-1 relative grid grid-cols-2 grid-rows-1 gap-2 border">
+                <div>hehe</div>
+                <div>hehe</div>
+              </div>
+            </div>
+          </Container>
+        </div>
+      </section>
+      <section className="bg-white my-6">
+        <Container>
+          <div className="px-32 py-8">
+            <div className="p-4 w-full flex flex-col gap-8 items-center">
+              <div className="text-xs">Trusted by the industry bests.</div>
+              <div className="mt-5 w-full flex flex-row justify-between items-center">
+                <Image
+                  src="/images/amazon.png"
+                  alt="amazon logo"
+                  width={100}
+                  height={100}
+                  className="object-cover"
+                />
+                <Image
+                  src="/images/amd.png"
+                  alt="amd logo"
+                  width={100}
+                  height={100}
+                  className="object-cover"
+                />
+                <Image
+                  src="/images/cisco.png"
+                  alt="cisco logo"
+                  width={100}
+                  height={100}
+                  className="object-cover"
+                />
+                <Image
+                  src="/images/dropcam.png"
+                  alt="dropcam logo"
+                  width={100}
+                  height={100}
+                  className="object-cover"
+                />
+                <Image
+                  src="/images/logitech.png"
+                  alt="logitech logo"
+                  width={100}
+                  height={100}
+                  className="object-cover"
+                />
+                <Image
+                  src="/images/spotify.png"
+                  alt="spotify logo"
+                  width={100}
+                  height={100}
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
       <section className="bg-white my-2">
         <Container>
           <div className="px-32 py-8">

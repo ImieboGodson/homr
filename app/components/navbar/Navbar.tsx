@@ -9,7 +9,7 @@ import UserMenu from "./UserMenu";
 const Navbar = () => {
   const pathname = usePathname();
   return (
-    <div className="fixed w-full z-10 bg-white">
+    <div className="fixed w-full z-30 bg-white">
       <div className="py-6">
         <Container>
           <div className="flex flex-row justify-between items-center">
