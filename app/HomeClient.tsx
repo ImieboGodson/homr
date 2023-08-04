@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { BsArrowUpRight } from "react-icons/bs";
+import { BiPlus } from "react-icons/bi";
 import { TbUserStar, TbMoneybag, TbSmartHome } from "react-icons/tb";
 import { PiKey } from "react-icons/pi";
 import Container from "./components/Container";
@@ -19,11 +20,11 @@ const HomeClient = () => {
   const router = useRouter();
   return (
     <div className="flex flex-col">
-      <section className="h-screen bg-white pb-12">
+      <section className=" bg-white pb-12">
         <div className="bg-[#ef626218]">
           <Container>
-            <div className="w-full px-32 h-[70vh] grid grid-cols-3 grid-rows-1 gap-4">
-              <div className="col-span-2 row-span-1 flex flex-col items-start justify-center border">
+            <div className="w-full px-32 h-[70vh] grid grid-cols-3 grid-rows-1">
+              <div className="col-span-2 row-span-1 flex flex-col items-start justify-center">
                 <div className="w-full flex flex-col gap-6 items-start justify-center">
                   <div className="text-4xl font-extrabold w-[78%]">
                     Finding the perfect place for you just got so much easier.
@@ -33,9 +34,75 @@ const HomeClient = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-span-1 relative grid grid-cols-2 grid-rows-1 gap-2 border">
-                <div>hehe</div>
-                <div>hehe</div>
+              <div className="col-span-1 relative grid grid-cols-2 grid-rows-2 gap-2">
+                <div className="absolute -bottom-6 right-20 p-4 text-xs rounded-lg bg-white shadow z-20 transition animate-custom-bounce">
+                  <div className="w-full flex flex-col gap-2 items-center">
+                    <div className="text-xs font-extrabold">
+                      10k+ exclusive agents
+                    </div>
+                    <div className="flex flex-col gap-[2px] items-start">
+                      <div className="flex flex-row items-center">
+                        <Image
+                          src="/images/person-1.jpg"
+                          alt="person"
+                          width={40}
+                          height={40}
+                          className="rounded-full object-cover overflow-hidden border border-white -mr-3"
+                        />
+                        <Image
+                          src="/images/person-3.jpg"
+                          alt="person"
+                          width={40}
+                          height={40}
+                          className="rounded-full object-cover overflow-hidden border border-white -mr-3"
+                        />
+                        <Image
+                          src="/images/person-4.jpg"
+                          alt="person"
+                          width={40}
+                          height={40}
+                          className="rounded-full object-cover overflow-hidden border border-white -mr-3"
+                        />
+                        <Image
+                          src="/images/person-5.jpg"
+                          alt="person"
+                          width={40}
+                          height={40}
+                          className="rounded-full object-cover overflow-hidden border border-white -mr-3"
+                        />
+                        <div className="w-[40px] h-[40px] flex flex-row items-center justify-center bg-black text-white rounded-full border border-white">
+                          <BiPlus size={18} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full col-span-1 row-span-2 relative">
+                  <div className="absolute h-[70vh] top-8 right-0 left-0 rounded-lg overflow-hidden">
+                    <Image
+                      src="/images/house-1.jpg"
+                      alt="frontview of a house"
+                      className="h-full w-full object-cover"
+                      fill
+                    />
+                  </div>
+                </div>
+                <div className="col-span-1 row-span-1 relative rounded-lg overflow-hidden">
+                  <Image
+                    src="/images/house-2.jpg"
+                    alt="frontview of a house"
+                    className="h-full w-full object-cover"
+                    fill
+                  />
+                </div>
+                <div className="col-span-1 row-span-1 relative rounded-lg overflow-hidden">
+                  <Image
+                    src="/images/house-4.jpg"
+                    alt="frontview of a house"
+                    className="h-full w-full object-cover"
+                    fill
+                  />
+                </div>
               </div>
             </div>
           </Container>
