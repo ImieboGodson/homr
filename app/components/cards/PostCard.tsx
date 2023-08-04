@@ -21,7 +21,7 @@ const PostCard: React.FC<PostCardProps> = ({ image, title }) => {
           />
         </div>
         <div className="relative h-[15vh] flex flex-col items-start justify-start py-6 px-2">
-          <div className="absolute top-[-60%] right-5 py-2 px-4 flex flex-col items-center justify-center bg-white rounded-lg shadow-md">
+          <div className="absolute top-[-40%] md:top-[-30%] lg:top-[-60%] right-5 py-2 px-4 flex flex-col items-center justify-center bg-white rounded-lg shadow-md">
             <div className="text-xs font-thin">Feb</div>
             <div className="text-base font-bold">03</div>
           </div>

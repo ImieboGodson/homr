@@ -23,11 +23,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
 
   return (
     <div className="relative w-fit flex  flex-row gap-6 justify-between items-center">
-      <div className="hidden md:flex flex-row gap-6 justify-between items-center">
-        <div className="cursor-pointer text-sm font-semibold">
+      <div className="hidden md:flex flex-row gap-2 justify-between items-center">
+        <div className="py-3 px-5 cursor-pointer text-sm font-semibold hover:bg-gray-100 text-black rounded-lg transition">
           Browse listings
         </div>
-        <div className="py-3 px-8 text-sm font-semibold bg-black text-white cursor-pointer rounded-lg">
+        <div className="py-3 px-5 text-sm font-semibold hover:bg-gray-100 text-black cursor-pointer rounded-lg transition">
           List a home
         </div>
       </div>

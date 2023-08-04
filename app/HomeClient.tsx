@@ -15,6 +15,7 @@ import ListingCard from "./components/cards/ListingCard";
 import { useRouter } from "next/navigation";
 import CityCard from "./components/cards/CityCard";
 import HeroSearch from "./components/HeroSearch";
+import Search from "./components/navbar/Search";
 
 const HomeClient = () => {
   const router = useRouter();
@@ -23,19 +24,24 @@ const HomeClient = () => {
       <section className=" bg-white pb-12">
         <div className="bg-[#ef626218]">
           <Container>
-            <div className="w-full px-32 h-[70vh] grid grid-cols-3 grid-rows-1">
-              <div className="col-span-2 row-span-1 flex flex-col items-start justify-center">
+            <div className="w-full xl:px-32 h-[50vh] lg:h-[70vh] grid grid-cols-3 grid-rows-1">
+              <div className="col-span-3 lg:col-span-2 row-span-1 flex flex-col items-start justify-center">
                 <div className="w-full flex flex-col gap-6 items-start justify-center">
-                  <div className="text-4xl font-extrabold w-[78%]">
+                  <div className="text-3xl md:text-4xl font-extrabold w-full md:w-[78%]">
                     Finding the perfect place for you just got so much easier.
                   </div>
                   <div className="w-full">
-                    <HeroSearch />
+                    <div className="hidden md:block w-full">
+                      <HeroSearch />
+                    </div>
+                    <div className="block w-full md:hidden">
+                      <Search />
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="col-span-1 relative grid grid-cols-2 grid-rows-2 gap-2">
-                <div className="absolute -bottom-6 right-20 p-4 text-xs rounded-lg bg-white shadow z-20 transition animate-custom-bounce">
+              <div className="hidden col-span-1 relative lg:grid grid-cols-2 grid-rows-2 gap-2">
+                <div className="absolute -bottom-2 right-16 p-4 text-xs rounded-lg bg-white shadow z-20 transition animate-custom-bounce">
                   <div className="w-full flex flex-col gap-2 items-center">
                     <div className="text-xs font-extrabold">
                       10k+ exclusive agents
@@ -108,12 +114,13 @@ const HomeClient = () => {
           </Container>
         </div>
       </section>
+
       <section className="bg-white my-6">
         <Container>
-          <div className="px-32 py-8">
+          <div className="xl:px-32 py-8">
             <div className="p-4 w-full flex flex-col gap-8 items-center">
               <div className="text-xs">Trusted by the industry bests.</div>
-              <div className="mt-5 w-full flex flex-row justify-between items-center">
+              <div className="mt-5 w-full grid grid-cols-3 md:grid-cols-6">
                 <Image
                   src="/images/amazon.png"
                   alt="amazon logo"
@@ -161,9 +168,10 @@ const HomeClient = () => {
           </div>
         </Container>
       </section>
+
       <section className="bg-white my-2">
         <Container>
-          <div className="px-32 py-8">
+          <div className="xl:px-32 py-8">
             <div className="w-full flex flex-col gap-14 items-center">
               <Heading
                 title="Properties by Cities"
@@ -178,7 +186,7 @@ const HomeClient = () => {
                   <BsArrowUpRight size={16} />
                 </div>
               </Heading>
-              <div className="w-full grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+              <div className="w-full grid gap-x-4 gap-y-8 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
                 <CityCard />
                 <CityCard />
                 <CityCard />
@@ -194,16 +202,20 @@ const HomeClient = () => {
       </section>
       <section className="bg-white my-2">
         <Container>
-          <div className="px-32 py-20">
+          <div className="xl:px-32 py-20">
             <div className="w-full flex flex-col gap-14 items-center">
               <Heading
                 title="Latest Properties"
                 subtitle="Get the best of the latest listing around the world."
                 secondayAction
               >
-                <div className="w-[20%] flex flex-row gap-2 items-center justify-between">
-                  <Button title="For Sale" onClick={() => {}} />
-                  <Button title="For Rent" onClick={() => {}} outline />
+                <div className="md:w-[20%] flex flex-row gap-2 items-center justify-between">
+                  <div className="w-[8rem]">
+                    <Button title="For Sale" onClick={() => {}} />
+                  </div>
+                  <div className="w-[8rem]">
+                    <Button title="For Rent" onClick={() => {}} outline />
+                  </div>
                 </div>
               </Heading>
               <div className="w-full grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
@@ -222,10 +234,10 @@ const HomeClient = () => {
       </section>
       <section className="bg-white">
         <Container>
-          <div className="px-32 py-20 grid grid-cols-1 md:grid-cols-2 gap-24">
-            <div className="relative rounded-lg col-span-1 h-[80vh]">
-              <div className="absolute bottom-6 right-[-15%] p-4 text-xs rounded-lg bg-white shadow z-20 transition animate-custom-bounce">
-                <div className="w-full flex flex-row gap-2 items-center">
+          <div className="xl:px-32 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
+            <div className="relative rounded-lg col-span-1 h-[45vh] md:h-[50] lg:h-[80vh]">
+              <div className="absolute bottom-6 right-20 md:right-[-15%] md:p-4 py-4 px-6 text-xs rounded-lg bg-white shadow z-20 transition animate-custom-bounce">
+                <div className="w-full flex flex-row gap-4 items-center">
                   <div className="p-3 rounded-full text-white bg-[#EF6262]">
                     <TbSmartHome size={23} />
                   </div>
@@ -301,7 +313,7 @@ const HomeClient = () => {
 
       <section className="bg-neutral-100 my-4">
         <Container>
-          <div className="px-32 py-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="xl:px-32 py-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <div className="col-span-2 self-center py-3 flex flex-col items-start gap-12">
               <div className="flex flex-col items-start gap-1">
                 <div className="text-2xl font-extrabold">
@@ -311,7 +323,7 @@ const HomeClient = () => {
                   When it comes to giving you what you want, we own this game.
                 </div>
               </div>
-              <div className="w-full grid grid-cols-3 gap-6">
+              <div className="w-full grid grid-cols-3 gap-4 lg:gap-6">
                 <div className="col-span-1 flex flex-col gap-1 items-start">
                   <div className="text-2xl font-extrabold">85%</div>
                   <div className="text-xs">Completed Property</div>
@@ -343,8 +355,8 @@ const HomeClient = () => {
 
       <section className="bg-white my-20">
         <Container>
-          <div className="px-32 grid grid-cols-1 md:grid-cols-2 gap-32">
-            <div className="col-span-1 py-3 flex flex-col gap-8 items-start">
+          <div className="xl:px-32 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-6 lg:gap-32">
+            <div className="col-span-1 py-3 flex flex-col gap-8 items-start order-2 md:order-1">
               <div className="flex flex-col items-start gap-1">
                 <div className="text-2xl font-extrabold">
                   Property inquiry form
@@ -357,7 +369,7 @@ const HomeClient = () => {
                 <InquiryForm />
               </div>
             </div>
-            <div className="rounded-lg col-span-1 h-[100vh]">
+            <div className="rounded-lg col-span-1 h-[45vh] md:h-[50vh] lg:h-[100vh] md:order-2 order-1">
               <div className="w-full h-full relative rounded-lg overflow-hidden">
                 <Image
                   src="/images/interior-design.jpg"
@@ -373,14 +385,14 @@ const HomeClient = () => {
 
       <section className="bg-white my-20">
         <Container>
-          <div className="px-32 flex flex-col items-center gap-12">
+          <div className="xl:px-32 flex flex-col items-center gap-12">
             <div className="flex flex-col gap-2 items-center">
               <div className="text-2xl font-extrabold">Resources and tips</div>
               <div className="text-sm">
                 Digest various views on all things real estate.
               </div>
             </div>
-            <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+            <div className="grid gap-6 md:gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
               <PostCard
                 image="/images/post-1.jpg"
                 title="BestLife magazine reveils best cities to enjoy biking and walks."
@@ -399,14 +411,14 @@ const HomeClient = () => {
       </section>
 
       <section className="bg-white pt-20">
-        <div className="relative bg-[#FFECEF]">
+        <div className="bg-[#FFECEF]">
           <Container>
-            <div className="w-full h-[50vh] px-32 flex flex-row justify-between items-center">
-              <div className="flex flex-col gap-2 items-start">
+            <div className="w-full h-[35vh] lg:h-[50vh] relative xl:px-32 flex flex-row justify-between items-center">
+              <div className="flex flex-col gap-2 items-center md:items-start">
                 <h2 className="text-2xl font-extrabold">
                   Become A Real Estate Agent
                 </h2>
-                <p className="text-sm">
+                <p className="text-sm text-center">
                   We only work with the best companies and people in the world.
                 </p>
                 <div className="w-[10rem] mt-4">
@@ -418,7 +430,7 @@ const HomeClient = () => {
                   />
                 </div>
               </div>
-              <div className="absolute right-48 bottom-0 overflow-hidden">
+              <div className="hidden lg:block absolute lg:right-20 xl:right-48 bottom-0 overflow-hidden">
                 <Image
                   src="/images/man.png"
                   width={260}

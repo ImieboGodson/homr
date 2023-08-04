@@ -14,7 +14,7 @@ const Heading: React.FC<HeadingProps> = ({
   children,
 }) => {
   return (
-    <div className="w-full flex flex-row items-center justify-between">
+    <div className="w-full flex flex-col gap-6 items-start md:flex-row md:items-center md:justify-between">
       <div className="flex flex-col gap-1 items-start">
         <div className="text-2xl font-extrabold">{title}</div>
         {subtitle && <div className="text-xs">{subtitle}</div>}

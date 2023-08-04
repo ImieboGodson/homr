@@ -11,7 +11,7 @@ interface LinkProps {
 const LinkTag: React.FC<LinkProps> = ({ link, title, color }) => {
   return (
     <Link href={link}>
-      <div className="text-gray-400">{title}</div>
+      <div className="text-gray-400 hover:text-gray-300">{title}</div>
     </Link>
   );
 };

@@ -18,8 +18,8 @@ const Footer = () => {
   return (
     <div className="w-full h-fit bg-[#20262E] text-sm text-white">
       <Container>
-        <div className="w-full flex flex-col">
-          <div className="py-6 flex justify-end items-center">
+        <div className="w-full xl:px-32 flex flex-col">
+          <div className="py-6 flex justify-center md:justify-end items-center">
             <div className="flex flex-row gap-4 items-center">
               <div className="font-bold">Follow us</div>
               <div className="flex flex-row gap-2 justify-between items-center">
@@ -42,8 +42,8 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="py-14 px-5 flex flex-col md:flex-row gap-28 justify-between items-start border-t-[1px] border-gray-700">
-            <div className="flex flex-col md:flex-row gap-28 items-start">
+          <div className="py-14 px-5 flex flex-col md:flex-row gap-16 md:gap-6 lg:gap-28 justify-between items-start border-t-[1px] border-gray-700">
+            <div className="flex flex-col md:flex-row gap-12 md:gap-6 lg:gap-28 items-start">
               <div className="flex flex-col gap-6 items-start">
                 <div className="font-bold">Popular Search</div>
                 <div className="flex flex-col gap-3 items-start">
@@ -97,7 +97,7 @@ const Footer = () => {
                   <Link
                     href="/"
                     target="blank"
-                    className="w-[11.2rem] py-2 px-6 flex flex-row gap-4 justify-start items-center bg-gray-800 rounded-md"
+                    className="w-[11.2rem] py-2 px-6 flex flex-row gap-4 justify-start items-center bg-gray-800 hover:bg-gray-900 rounded-md"
                   >
                     <FaApple size={22} />
                     <div className="flex flex-col items-start">
@@ -110,7 +110,7 @@ const Footer = () => {
                   <Link
                     href="/"
                     target="blank"
-                    className="w-[11.2rem] py-2 px-6 flex flex-row gap-4 justify-start items-center bg-gray-800 rounded-md"
+                    className="w-[11.2rem] py-2 px-6 flex flex-row gap-4 justify-start items-center bg-gray-800 hover:bg-gray-900 rounded-md"
                   >
                     <IoLogoGooglePlaystore size={22} />
                     <div className="flex flex-col items-start">
