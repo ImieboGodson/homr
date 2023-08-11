@@ -5,6 +5,7 @@ import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
 import useDropMenu from "@/app/hooks/useDropMenu";
 import { useCallback } from "react";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 interface UserMenuProps {
   currentUser?: null | undefined;
@@ -12,6 +13,7 @@ interface UserMenuProps {
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const dropMenu = useDropMenu();
+  const loginModal = useLoginModal();
 
   const handleToggle = useCallback(() => {
     if (dropMenu.isOpen) {
@@ -62,7 +64,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             ) : (
               <>
                 <div>
-                  <MenuItem title="Log in" onClick={() => {}} />
+                  <MenuItem
+                    title="Log in"
+                    onClick={() => loginModal.onOpen()}
+                  />
                   <MenuItem title="Sign up" onClick={() => {}} />
                 </div>
                 <div className="pt-2 border-t-[1px]">
