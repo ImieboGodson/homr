@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname, useRouter } from "next/navigation";
 import { IoIosArrowDown } from "react-icons/io";
 import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
@@ -15,6 +16,8 @@ interface UserMenuProps {
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
+  const pathname = usePathname();
+  const router = useRouter();
   const dropMenu = useDropMenu();
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
@@ -27,13 +30,29 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     return dropMenu.onOpen();
   }, [dropMenu]);
 
+  const handleClick = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
+
+    return;
+  }, [currentUser, loginModal]);
+
   return (
     <div className="relative w-fit flex  flex-row gap-6 justify-between items-center">
       <div className="hidden md:flex flex-row gap-2 justify-between items-center">
-        <div className="py-3 px-5 cursor-pointer text-sm font-semibold hover:bg-gray-100 text-black rounded-lg transition">
-          Browse listings
-        </div>
-        <div className="py-3 px-5 text-sm font-semibold hover:bg-gray-100 text-black cursor-pointer rounded-lg transition">
+        {pathname === "/" && (
+          <div
+            onClick={() => router.push("/listings")}
+            className="py-3 px-5 cursor-pointer text-sm font-semibold hover:bg-gray-100 text-black rounded-lg transition"
+          >
+            Browse listings
+          </div>
+        )}
+        <div
+          onClick={handleClick}
+          className="py-3 px-5 text-sm font-semibold hover:bg-gray-100 text-black cursor-pointer rounded-lg transition"
+        >
           List a home
         </div>
       </div>
@@ -88,7 +107,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                   />
                 </div>
                 <div className="pt-2 border-t-[1px]">
-                  <MenuItem title="List a home" onClick={() => {}} />
+                  <MenuItem title="List a home" onClick={handleClick} />
                   <MenuItem title="Help" onClick={() => {}} />
                 </div>
               </>
