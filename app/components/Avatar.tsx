@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 interface AvatarProps {
-  userImage?: string;
+  userImage: string | null | undefined;
 }
 
 const Avatar: React.FC<AvatarProps> = ({ userImage }) => {
@@ -11,8 +11,8 @@ const Avatar: React.FC<AvatarProps> = ({ userImage }) => {
     <Image
       src={userImage || "/images/user.png"}
       alt="user avatar"
-      height={30}
-      width={30}
+      height={33}
+      width={33}
       className="rounded-full overflow-hidden cursor-pointer"
     />
   );

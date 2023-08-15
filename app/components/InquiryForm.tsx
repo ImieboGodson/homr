@@ -113,6 +113,7 @@ const InquiryForm = () => {
           placeholder="90"
           isDisabled={isLoading}
           required
+          priceFormat
         />
         <Input
           id="minSize"
