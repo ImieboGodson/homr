@@ -35,8 +35,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
       return loginModal.onOpen();
     }
 
-    return;
-  }, [currentUser, loginModal]);
+    return router.push("/owner/create-listing");
+  }, [currentUser, loginModal, router]);
 
   return (
     <div className="relative w-fit flex  flex-row gap-6 justify-between items-center">

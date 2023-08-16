@@ -52,8 +52,10 @@ model Listing {
   title         String
   description   String
   images        String[]
+  features      String[]
   category      String
   location      String
+  guestCount    Int
   roomCount     Int
   bathroomCount Int
   type          String

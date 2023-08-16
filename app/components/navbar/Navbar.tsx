@@ -20,7 +20,9 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
           <div className="flex flex-row justify-between items-center">
             <Logo />
             {pathname === "/listings" && <Search />}
-            <UserMenu currentUser={currentUser} />
+            {!(pathname === "/owner/create-listing") && (
+              <UserMenu currentUser={currentUser} />
+            )}
           </div>
         </Container>
       </div>

@@ -31,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({
           ? "bg-[#EF6262] font-bold text-white border-[#EF6262]"
           : `${
               !outline
-                ? "bg-black text-white border-white"
+                ? "bg-black text-white border-black hover:bg-neutral-900"
                 : "bg-white text-black border-black hover:bg-neutral-100"
             }`
       }`}

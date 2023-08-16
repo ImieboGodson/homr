@@ -9,7 +9,6 @@ const page = async () => {
         <EmptyState
           title="No listings yet"
           subtitle="Try adjusting the filters, or start on clean slate."
-          center
         />
       </ClientOnly>
     </Container>
