@@ -15,13 +15,15 @@ import {
   FaPeopleRoof,
   FaPersonShelter,
 } from "react-icons/fa6";
-import { PiHouseLine, PiCertificate } from "react-icons/pi";
-import { GiHouseKeys } from "react-icons/gi";
-import { BsDoorClosed } from "react-icons/bs";
-import { MdOutlineNightShelter } from "react-icons/md";
 import SelectOption from "@/app/components/inputs/SelectOption";
 import TextSelect from "@/app/components/inputs/TextSelect";
 import Counter from "@/app/components/inputs/Counter";
+import ListingHeading from "@/app/components/listing/ListingHeading";
+import {
+  listingTypes,
+  listingCategories,
+  listingFeatures,
+} from "@/app/libs/options";
 
 enum STEPS {
   "USER" = 0,
@@ -35,54 +37,6 @@ enum STEPS {
   "DESCRIPTION" = 8,
   "PRICE" = 9,
 }
-
-// const stringsArray = [
-//   "user",
-//   "category",
-//   "type",
-//   "location",
-//   "details",
-//   "features",
-//   "photos",
-//   "title",
-//   "description",
-//   "price",
-// ];
-
-const types = [
-  {
-    icon: PiHouseLine,
-    label: "An entire place",
-    subtitle: "Guests have the whole to themselves.",
-  },
-  {
-    icon: BsDoorClosed,
-    label: "A room",
-    subtitle:
-      "Guests have their own room in a home, plus access to shared spaces.",
-  },
-  {
-    icon: FaPeopleRoof,
-    label: "A shared room",
-    subtitle:
-      "Guests sleep in a room or common area that may be shared with you or other.",
-  },
-];
-
-const categories = [
-  {
-    icon: GiHouseKeys,
-    label: "Rent",
-  },
-  {
-    icon: MdOutlineNightShelter,
-    label: "Shortlet",
-  },
-  {
-    icon: PiCertificate,
-    label: "Sale",
-  },
-];
 
 interface CreatListingClientProps {
   currentUser?: SafeUser | null;
@@ -133,12 +87,26 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
   const guestCount = watch("guestCount");
   const price = watch("price");
 
+  console.log(features);
+
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
       shouldDirty: true,
       shouldTouch: true,
       shouldValidate: true,
     });
+  };
+
+  const setFeaturesValues = (value: string) => {
+    if (!features.includes(value)) {
+      return setCustomValue("features", [...features, value]);
+    }
+
+    const newFeatures = features.filter(
+      (feature: string) => !(feature === value)
+    );
+
+    return setCustomValue("features", newFeatures);
   };
 
   const onBack = () => {
@@ -198,14 +166,10 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
 
   let bodyContent = (
     <div className="w-full flex flex-col gap-10 items-start">
-      <div className="flex flex-col gap-2 items-start">
-        <div className="text-4xl font-extrabold">
-          Hello, {currentUser?.name}
-        </div>
-        <div className="text-xl text-neutral-600">
-          Who are you listing this property as?
-        </div>
-      </div>
+      <ListingHeading
+        title={`Hello, ${currentUser?.name}`}
+        subtitle="Who are you listing this property as?"
+      />
       <div className="w-full py-2 grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="col-span-1">
           <UserTypeSelect
@@ -232,13 +196,9 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
   if (step === STEPS.CATEGORY) {
     bodyContent = (
       <div className="w-full flex flex-col gap-10 items-start">
-        <div className="flex flex-col gap-2 items-start">
-          <div className="text-3xl font-bold">
-            What are you listing this property for?
-          </div>
-        </div>
+        <ListingHeading title="What are you listing this property for?" />
         <div className="mx-auto w-full md:w-[35vw]  py-2 grid grid-cols-1 gap-4">
-          {categories.map((option) => {
+          {listingCategories.map((option) => {
             return (
               <div key={option.label} className="col-span-1">
                 <SelectOption
@@ -259,11 +219,9 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
   if (step === STEPS.TYPE) {
     bodyContent = (
       <div className="w-full flex flex-col gap-6 items-start">
-        <div className="text-3xl font-bold">
-          What type of space is available?
-        </div>
+        <ListingHeading title="What type of space is available?" />
         <div className="mx-auto w-full  py-2 grid grid-cols-1 gap-4">
-          {types.map((option) => {
+          {listingTypes.map((option) => {
             return (
               <div key={option.label} className="col-span-1">
                 <SelectOption
@@ -284,15 +242,11 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
   if (step === STEPS.LOCATION) {
     bodyContent = (
       <div className="w-full flex flex-col gap-6 items-start">
-        <div className="flex flex-col gap-2 items-start">
-          <div className="text-3xl font-bold">
-            Where is your property located?
-          </div>
-          <div className="text-lg text-neutral-600">
-            The location of your property is vital for guest&apos;s
-            consideration.
-          </div>
-        </div>
+        <ListingHeading
+          title="Where is your property located?"
+          subtitle="The location of your property is vital for guest's
+          consideration."
+        />
         <div className="w-full flex flex-col gap-4 ">
           {/* <TextSelect id="location" /> */}
         </div>
@@ -303,14 +257,10 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
   if (step === STEPS.DETAILS) {
     bodyContent = (
       <div className="w-full flex flex-col gap-6 items-start">
-        <div className="flex flex-col gap-2 items-start">
-          <div className="text-3xl font-bold">
-            Share a few basics about your place
-          </div>
-          <div className="text-lg text-neutral-600">
-            Give numbers to the main features of the property.
-          </div>
-        </div>
+        <ListingHeading
+          title="Share a few basics about your place"
+          subtitle="Give numbers to the main features of the property."
+        />
         <div className="w-full flex flex-col gap-2">
           <Counter
             title="Guests"
@@ -342,8 +292,29 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
   if (step === STEPS.FEATURES) {
     bodyContent = (
       <div className="w-full flex flex-col gap-6 items-start">
-        <div className="text-4xl font-extrabold">FEATURES</div>
-        <div>body</div>
+        <ListingHeading
+          title="Tell clients what your property has to offer"
+          subtitle="Help clients understand what your property offers."
+        />
+        <div className="w-full flex flex-col items-start">
+          <div className="mx-auto w-full py-2 grid grid-cols-2 md:grid-cols-3 gap-4">
+            {listingFeatures &&
+              listingFeatures[0].map((option: any) => {
+                return (
+                  <div key={option.label} className="col-span-1 row-span-1">
+                    <SelectOption
+                      icon={option.icon}
+                      label={option.label}
+                      onClick={(value) => setFeaturesValues(value)}
+                      selected={features.includes(option.label)}
+                      categorySelect
+                      small
+                    />
+                  </div>
+                );
+              })}
+          </div>
+        </div>
       </div>
     );
   }
