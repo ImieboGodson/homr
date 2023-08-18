@@ -10,6 +10,8 @@ interface ButtonProps {
   icon?: IconType;
   authType?: boolean;
   socialLogin?: boolean;
+  navType?: boolean;
+  noBorder?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -20,19 +22,27 @@ const Button: React.FC<ButtonProps> = ({
   outline,
   primary,
   socialLogin,
+  navType,
+  noBorder,
 }) => {
   return (
     <div
       onClick={onClick}
-      className={` relative w-full flex flex-row gap-1 justify-center items-center  font-semibold ${
-        authType ? "py-3 text-lg" : "py-2.5 text-sm"
-      } border rounded-md cursor-pointer ${
+      className={` relative w-full flex flex-row gap-1 justify-center items-center  font-bold ${
+        authType
+          ? "py-3 text-lg"
+          : `${navType ? "text-base" : "text-sm"} py-2.5`
+      }  border rounded-md cursor-pointer ${
         primary
-          ? "bg-[#EF6262] font-bold text-white border-[#EF6262]"
+          ? "bg-[#EF6262] font-bold text-white border-[#EF6262] text-sm"
           : `${
-              !outline
-                ? "bg-black text-white border-black hover:bg-neutral-900"
-                : "bg-white text-black border-black hover:bg-neutral-100"
+              outline
+                ? "bg-white text-black border-black hover:bg-neutral-100"
+                : `${
+                    noBorder
+                      ? "bg-white border-white text-black underline hover:bg-neutral-100"
+                      : "bg-black text-white border-black hover:bg-neutral-900"
+                  }`
             }`
       }`}
     >

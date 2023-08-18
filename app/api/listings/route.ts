@@ -14,6 +14,7 @@ export default async function POST( request: Request) {
     const body = await request.json();
 
     const {
+        userType,
         title,
         description,
         images,
@@ -21,6 +22,7 @@ export default async function POST( request: Request) {
         location,
         roomCount,
         bathroomCount,
+        guestCount,
         type,
         status,
         price
@@ -41,10 +43,12 @@ export default async function POST( request: Request) {
             location,
             roomCount,
             bathroomCount,
+            guestCount,
             type,
             status,
             price: parseInt(price, 10),
-            userId: currentUser.id
+            userId: currentUser.id,
+            userType
         }
     })
 

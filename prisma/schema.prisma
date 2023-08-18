@@ -49,6 +49,7 @@ model Account {
 model Listing {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   userId        String   @db.ObjectId
+  userType      String
   title         String
   description   String
   images        String[]
