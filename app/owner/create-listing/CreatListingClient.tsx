@@ -296,7 +296,7 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
           title="Tell clients what your property has to offer"
           subtitle="Help clients understand what your property offers."
         />
-        <div className="w-full flex flex-col items-start">
+        <div className="w-full flex flex-col gap-10 items-start">
           <div className="mx-auto w-full py-2 grid grid-cols-2 md:grid-cols-3 gap-4">
             {listingFeatures &&
               listingFeatures[0].map((option: any) => {
@@ -313,6 +313,50 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
                   </div>
                 );
               })}
+          </div>
+          <div className="w-full flex flex-col gap-3">
+            <div className="text-xl font-bold">
+              Do you have any standout amenities?
+            </div>
+            <div className="mx-auto w-full py-2 grid grid-cols-2 md:grid-cols-3 gap-4">
+              {listingFeatures &&
+                listingFeatures[1].map((option: any) => {
+                  return (
+                    <div key={option.label} className="col-span-1 row-span-1">
+                      <SelectOption
+                        icon={option.icon}
+                        label={option.label}
+                        onClick={(value) => setFeaturesValues(value)}
+                        selected={features.includes(option.label)}
+                        categorySelect
+                        small
+                      />
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+          <div className="w-full flex flex-col gap-3">
+            <div className="text-xl font-bold">
+              Do you have any of these safety items?
+            </div>
+            <div className="mx-auto w-full py-2 grid grid-cols-2 md:grid-cols-3 gap-4">
+              {listingFeatures &&
+                listingFeatures[2].map((option: any) => {
+                  return (
+                    <div key={option.label} className="col-span-1 row-span-1">
+                      <SelectOption
+                        icon={option.icon}
+                        label={option.label}
+                        onClick={(value) => setFeaturesValues(value)}
+                        selected={features.includes(option.label)}
+                        categorySelect
+                        small
+                      />
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         </div>
       </div>
@@ -358,7 +402,7 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
   return (
     <div className="relative w-full">
       <Container>
-        <div className="mx-auto w-full md:w-[40vw] lg:w-[50vw]">
+        <div className="mx-auto w-full md:w-[40vw] lg:w-[50vw] pb-[100px]">
           {bodyContent}
         </div>
       </Container>

@@ -7,6 +7,14 @@ html, body, :root {
   width: 100%;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
 .animate-custom-bounce {
   animation: bounce 5s infinite;

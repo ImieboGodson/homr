@@ -3,10 +3,12 @@ import {
     FaPeopleRoof,
     FaPersonShelter,
 } from "react-icons/fa6";
-import { PiHouseLine, PiCertificate, PiTelevision, PiCookingPot, PiCar, PiSnowflake, PiDesktopTower } from "react-icons/pi";
-import { GiHouseKeys, GiWifiRouter, GiClothesline, GiSpeedometer } from "react-icons/gi";
+import { PiHouseLine, PiSwimmingPool, PiFireExtinguisher, PiFirstAidKit, PiCertificate, PiTelevision, PiCookingPot, PiCar, PiSnowflake, PiDesktopTower } from "react-icons/pi";
+import { GiHouseKeys, GiWifiRouter, GiRoundTable, GiWeightLiftingUp, GiClothesline, GiSpeedometer, GiPowerGenerator, GiWashingMachine } from "react-icons/gi";
 import { BsDoorClosed } from "react-icons/bs";
-import { MdOutlineNightShelter } from "react-icons/md";
+import { MdOutlineNightShelter, MdOutlineSportsFootball, MdOutlineTableBar } from "react-icons/md";
+import { RiPassportLine, RiAlarmWarningLine } from 'react-icons/ri'
+import { LiaTableTennisSolid } from 'react-icons/lia'
 
 export const listingTypes = [
     {
@@ -58,16 +60,16 @@ export const listingFeatures = [
             icon: PiCookingPot
         },
         {
-            label: 'Washer',
-            icon: GiClothesline
+            label: 'Laundry room',
+            icon: GiWashingMachine
         },
         {
             label: 'Free parking on premises',
             icon: PiCar
         },
         {
-            label: 'Paid parking on premises',
-            icon: GiSpeedometer
+            label: 'Standby generator',
+            icon: GiPowerGenerator
         },
         {
             label: 'Air conditioning',
@@ -76,6 +78,46 @@ export const listingFeatures = [
         {
             label: 'Dedicated workspace',
             icon: PiDesktopTower
+        },
+    ],
+    [
+        {
+            label: 'Pool',
+            icon: PiSwimmingPool
+        },
+        {
+            label: 'Sports area',
+            icon: MdOutlineSportsFootball
+        },
+        {
+            label: 'Outdoor sitting area',
+            icon: GiRoundTable
+        },
+        {
+            label: 'Gym',
+            icon: GiWeightLiftingUp
+        },
+        {
+            label: 'Cafeteria',
+            icon: MdOutlineTableBar
+        }
+    ],
+    [
+        {
+            label: 'Smoke alarm',
+            icon: RiPassportLine
+        },
+        {
+            label: 'Carbon monoxide alarm',
+            icon: RiAlarmWarningLine
+        },
+        {
+            label: 'Fire extinguisher',
+            icon: PiFireExtinguisher
+        },
+        {
+            label: 'First aid kit',
+            icon: PiFirstAidKit
         },
     ]
 ]
