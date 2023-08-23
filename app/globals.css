@@ -16,6 +16,13 @@ html, body, :root {
   scrollbar-width: none;  /* Firefox */
 }
 
+.leaflet-bottom,
+.leaflet-control,
+.leaflet-pane,
+.leaflet-top {
+  z-index: 0 !important;
+}
+
 .animate-custom-bounce {
   animation: bounce 5s infinite;
 }

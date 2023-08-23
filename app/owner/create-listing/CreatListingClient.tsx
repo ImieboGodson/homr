@@ -10,13 +10,8 @@ import { toast } from "react-hot-toast";
 import NavigationFooter from "@/app/components/footer/NavigationFooter";
 import Container from "@/app/components/Container";
 import UserTypeSelect from "@/app/components/inputs/UserTypeSelect";
-import {
-  FaPersonWalking,
-  FaPeopleRoof,
-  FaPersonShelter,
-} from "react-icons/fa6";
+import { FaPersonWalking, FaPersonShelter } from "react-icons/fa6";
 import SelectOption from "@/app/components/inputs/SelectOption";
-import TextSelect from "@/app/components/inputs/TextSelect";
 import Counter from "@/app/components/inputs/Counter";
 import ListingHeading from "@/app/components/listing/ListingHeading";
 import {
@@ -24,6 +19,10 @@ import {
   listingCategories,
   listingFeatures,
 } from "@/app/libs/options";
+import Input from "@/app/components/inputs/Input";
+import Map from "@/app/components/map/Map";
+import CountrySelect from "@/app/components/inputs/CountrySelect";
+import Textarea from "@/app/components/inputs/Textarea";
 
 enum STEPS {
   "USER" = 0,
@@ -241,14 +240,17 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
 
   if (step === STEPS.LOCATION) {
     bodyContent = (
-      <div className="w-full flex flex-col gap-6 items-start">
+      <div className="w-full mx-auto md:w-[40vw] flex flex-col gap-6 items-start">
         <ListingHeading
           title="Where is your property located?"
           subtitle="The location of your property is vital for guest's
           consideration."
         />
-        <div className="w-full flex flex-col gap-4 ">
-          {/* <TextSelect id="location" /> */}
+        <div className="w-full flex flex-col gap-8 ">
+          <CountrySelect id="location" onChange={() => {}} />
+          <div className="w-full h-[40vh] overflow-hidden rounded-lg z-0">
+            <Map />
+          </div>
         </div>
       </div>
     );
@@ -375,8 +377,22 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
   if (step === STEPS.TITLE) {
     bodyContent = (
       <div className="w-full flex flex-col gap-6 items-start">
-        <div className="text-4xl font-extrabold">TITLE</div>
-        <div>body</div>
+        <ListingHeading
+          title="Now, give your property a title"
+          subtitle="Keep it short and fun."
+        />
+        <div className="w-full flex flex-col gap-5">
+          <Textarea
+            id="title"
+            value={title}
+            maxChar={32}
+            charNumber={title.length}
+            register={register}
+            errors={errors}
+            isDisabled={isLoading}
+            required
+          />
+        </div>
       </div>
     );
   }
@@ -384,8 +400,22 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
   if (step === STEPS.DESCRIPTION) {
     bodyContent = (
       <div className="w-full flex flex-col gap-6 items-start">
-        <div className="text-4xl font-extrabold">DESCRIPTION</div>
-        <div>body</div>
+        <ListingHeading
+          title="And now, give a description"
+          subtitle="Write about the features that you have."
+        />
+        <div className="w-full flex flex-col gap-4">
+          <Textarea
+            id="description"
+            value={description}
+            maxChar={500}
+            charNumber={description.length}
+            register={register}
+            errors={errors}
+            isDisabled={isLoading}
+            required
+          />
+        </div>
       </div>
     );
   }
