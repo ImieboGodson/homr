@@ -23,6 +23,7 @@ import Input from "@/app/components/inputs/Input";
 import Map from "@/app/components/map/Map";
 import CountrySelect from "@/app/components/inputs/CountrySelect";
 import Textarea from "@/app/components/inputs/Textarea";
+import PriceInput from "@/app/components/inputs/PriceInput";
 
 enum STEPS {
   "USER" = 0,
@@ -422,9 +423,22 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
 
   if (step === STEPS.PRICE) {
     bodyContent = (
-      <div className="w-full flex flex-col gap-6 items-start">
-        <div className="text-4xl font-extrabold">PRICE</div>
-        <div>body</div>
+      <div className="w-full flex flex-col gap-12 items-start">
+        <ListingHeading
+          title="Now, give your price"
+          subtitle="You can always change this later."
+        />
+        <div className="mt-8 w-full flex flex-col gap-4 items-center justify-center">
+          <PriceInput
+            id="price"
+            value={price}
+            register={register}
+            errors={errors}
+            defaultValue={price}
+            isDisabled={isLoading}
+            required
+          />
+        </div>
       </div>
     );
   }

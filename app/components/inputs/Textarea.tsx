@@ -1,6 +1,5 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 interface TextareaProps {
@@ -37,8 +36,8 @@ const Textarea: React.FC<TextareaProps> = ({
         defaultValue={value}
         maxLength={maxChar}
         className={`peer w-full ${
-          id === "title" ? "min-h-[25vh] text-2xl" : "min-h-[40vh] text-base"
-        } p-4 placeholder:text-sm placeholder:text-gray-500 placeholder:font-normal bg-white border-[1px] border-gray-300 rounded outline-none focus:outline focus:outline-black focus:outline-[1.4px] focus:outline-offset-0 focus:border-black transition disabled:opacity-70 disabled:cursor-not-allowed ${
+          id === "title" ? "min-h-[25vh] text-2xl" : "min-h-[40vh] text-lg"
+        } p-5 placeholder:text-sm placeholder:text-gray-500 placeholder:font-normal bg-white border-[1px] border-gray-300 rounded-lg outline-none focus:outline focus:outline-black focus:outline-[1.4px] focus:outline-offset-0 focus:border-black transition disabled:opacity-70 disabled:cursor-not-allowed ${
           errors[id] ? "border-rose-500" : "border-neutral-300"
         } ${
           errors[id]

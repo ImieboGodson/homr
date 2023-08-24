@@ -23,6 +23,14 @@ html, body, :root {
   z-index: 0 !important;
 }
 
+input[type='number']::-webkit-inner-spin-button {
+  display: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .animate-custom-bounce {
   animation: bounce 5s infinite;
 }
