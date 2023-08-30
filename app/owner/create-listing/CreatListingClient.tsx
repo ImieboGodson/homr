@@ -1,8 +1,8 @@
 "use client";
 
 import { SafeUser } from "@/app/types";
+import Image from "next/image";
 import axios from "axios";
-import qs from "query-string";
 import { useCallback, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { SubmitHandler, useForm, FieldValues } from "react-hook-form";
@@ -11,6 +11,7 @@ import NavigationFooter from "@/app/components/footer/NavigationFooter";
 import Container from "@/app/components/Container";
 import UserTypeSelect from "@/app/components/inputs/UserTypeSelect";
 import { FaPersonWalking, FaPersonShelter } from "react-icons/fa6";
+import { TbPhotoPlus } from "react-icons/tb";
 import SelectOption from "@/app/components/inputs/SelectOption";
 import Counter from "@/app/components/inputs/Counter";
 import ListingHeading from "@/app/components/listing/ListingHeading";
@@ -20,7 +21,6 @@ import {
   listingFeatures,
 } from "@/app/libs/options";
 import Input from "@/app/components/inputs/Input";
-// import Map from "@/app/components/map/Map";
 import CountrySelect from "@/app/components/inputs/CountrySelect";
 import Textarea from "@/app/components/inputs/Textarea";
 import PriceInput from "@/app/components/inputs/PriceInput";
@@ -379,8 +379,69 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
   if (step === STEPS.PHOTOS) {
     bodyContent = (
       <div className="w-full flex flex-col gap-6 items-start">
-        <div className="text-4xl font-extrabold">PHOTOS</div>
-        <div>body</div>
+        <ListingHeading
+          title="Choose pictures that show your place"
+          subtitle="Add 3 pictures that displays the beauty of your place."
+        />
+        <div className="w-full grid grid-cols-2 gap-4">
+          <div className="relative col-span-2 h-[45vh] flex flex-row justify-center items-center border border-dashed">
+            {images.length >= 1 && (
+              <div className="absolute top-3 left-3 py-2 px-2.5 text-base font-bold bg-white rounded-md shadow-sm z-30">
+                Cover Photo
+              </div>
+            )}
+            {images.length >= 1 && (
+              <div className="absolute inset-0 bg-transparent z-20">
+                <Image
+                  src={images[0]}
+                  alt="cover photo"
+                  fill
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+            <div className="flex flex-col gap-2 items-center">
+              <TbPhotoPlus size={40} />
+              <div className="text-base font-semibold underline cursor-pointer">
+                Add a cover photo
+              </div>
+            </div>
+          </div>
+          {images.length > 0 && (
+            <div className="col-span-2 grid grid-cols-2 gap-4">
+              <div className="relative col-span-1 h-[45vh] flex flex-row justify-center items-center border border-dashed cursor-pointer">
+                {images.length >= 2 && (
+                  <div className="absolute inset-0 bg-transparent z-20">
+                    <Image
+                      src={images[2]}
+                      alt="cover photo"
+                      fill
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+                <div className="flex flex-col gap-2 items-center">
+                  <TbPhotoPlus size={35} className="text-neutral-400" />
+                </div>
+              </div>
+              <div className="relative col-span-1 h-[45vh] flex flex-row justify-center items-center border border-dashed cursor-pointer">
+                {images.length >= 3 && (
+                  <div className="absolute inset-0 bg-transparent z-20">
+                    <Image
+                      src={images[3]}
+                      alt="cover photo"
+                      fill
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+                <div className="flex flex-col gap-2 items-center">
+                  <TbPhotoPlus size={35} className="text-neutral-400" />
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     );
   }
