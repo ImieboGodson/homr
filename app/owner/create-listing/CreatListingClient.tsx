@@ -20,10 +20,11 @@ import {
   listingFeatures,
 } from "@/app/libs/options";
 import Input from "@/app/components/inputs/Input";
-import Map from "@/app/components/map/Map";
+// import Map from "@/app/components/map/Map";
 import CountrySelect from "@/app/components/inputs/CountrySelect";
 import Textarea from "@/app/components/inputs/Textarea";
 import PriceInput from "@/app/components/inputs/PriceInput";
+import dynamic from "next/dynamic";
 
 enum STEPS {
   "USER" = 0,
@@ -87,7 +88,10 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
   const guestCount = watch("guestCount");
   const price = watch("price");
 
-  console.log("Price", price);
+  const Map = useMemo(
+    () => dynamic(() => import("../../components/map/Map"), { ssr: false }),
+    [location]
+  );
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -146,22 +150,24 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
       return onNext();
     }
 
-    setIsLoading(true);
+    // setIsLoading(true);
 
-    axios
-      .post("/api/listings", data)
-      .then(() => {
-        toast.success("Listing created");
-        reset();
-        setStep(STEPS.USER);
-        router.push("/owner");
-      })
-      .catch((error: any) => {
-        toast.error(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    console.log("FORM DATA: ", data);
+
+    // axios
+    //   .post("/api/listings", data)
+    //   .then(() => {
+    //     toast.success("Listing created");
+    //     reset();
+    //     setStep(STEPS.USER);
+    //     router.push("/owner");
+    //   })
+    //   .catch((error: any) => {
+    //     toast.error(error);
+    //   })
+    //   .finally(() => {
+    //     setIsLoading(false);
+    //   });
   };
 
   let bodyContent = (
@@ -247,10 +253,14 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
           subtitle="The location of your property is vital for guest's
           consideration."
         />
-        <div className="w-full flex flex-col gap-8 ">
-          <CountrySelect id="location" onChange={() => {}} />
+        <div className="w-full flex flex-col gap-4 ">
+          <CountrySelect
+            id="location"
+            value={location}
+            onChange={(value) => setCustomValue("location", value)}
+          />
           <div className="w-full h-[40vh] overflow-hidden rounded-lg z-0">
-            <Map />
+            <Map center={location?.latlng} />
           </div>
         </div>
       </div>
@@ -431,10 +441,7 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
         <div className="mt-8 w-full flex flex-col gap-4 items-center justify-center">
           <PriceInput
             id="price"
-            value={price}
             onChange={(value) => setCustomValue("price", value)}
-            register={register}
-            errors={errors}
             isDisabled={isLoading}
             required
           />

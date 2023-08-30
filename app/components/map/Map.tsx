@@ -16,11 +16,15 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow.src,
 });
 
-const Map = () => {
+interface MapProps {
+  center?: number[];
+}
+
+const Map: React.FC<MapProps> = ({ center }) => {
   return (
     <MapContainer
-      center={[51.505, -0.09]}
-      zoom={13}
+      center={(center as L.LatLngExpression) || [51.505, -0.09]}
+      zoom={center ? 8 : 4}
       scrollWheelZoom={false}
       //   style={{ height: "100%", width: "100%" }}
       className="h-[100%] w-[100%] z-10"
@@ -29,7 +33,7 @@ const Map = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[51.505, -0.09]}>
+      <Marker position={(center as L.LatLngExpression) || [51.505, -0.09]}>
         <Popup>
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>

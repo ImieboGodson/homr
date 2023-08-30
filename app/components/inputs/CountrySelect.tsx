@@ -2,10 +2,16 @@
 
 import { useEffect, useState } from "react";
 import Select from "react-select";
+import useWorldStates from "@/app/hooks/useWorldStates";
 
-export type optionValue = {
+export type locationSelectValue = {
   value: string;
   label: string;
+  latlng: number[];
+  code: string;
+  countryName: string;
+  countryFlag: string | undefined;
+  region: string;
 };
 
 const defaultOptions = [
@@ -16,9 +22,9 @@ const defaultOptions = [
 
 interface CountrySelectProps {
   id: string;
-  value?: optionValue;
+  value?: locationSelectValue;
   placeholder?: string;
-  onChange: (value: optionValue) => void;
+  onChange: (value: locationSelectValue) => void;
   isDisabled?: boolean;
 }
 
@@ -31,6 +37,11 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
 }) => {
   const [options, setOptions] = useState(defaultOptions);
 
+  const { getAllStates, getByStateName, getByStateName_unformatted } =
+    useWorldStates();
+
+  console.log("State: ", getByStateName_unformatted("Lagos"));
+
   return (
     <div className="w-full flex flex-col items-start gap-1">
       <div className="w-full">
@@ -39,23 +50,27 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
           placeholder={placeholder || "--choose an option--"}
           defaultValue={null}
           value={value}
-          onChange={(value) => onChange(value as optionValue)}
+          onChange={(value) => onChange(value as locationSelectValue)}
           isClearable
-          options={options}
+          options={getAllStates()}
           isDisabled={isDisabled}
           formatOptionLabel={(option: any) => (
             <div
               className="
             flex flex-row items-center gap-3 z-40"
             >
-              <div>{option.flag}</div>
+              <div>{option.code}</div>
               <div>
                 {option.label},
-                <span className="text-neutral-500 ml-1">{option.region}</span>
+                <span className="text-neutral-500 ml-1">
+                  {option.countryName}
+                </span>
               </div>
             </div>
           )}
           classNames={{
+            control: () => "p-1.5 border-2 bg-white",
+            input: () => "text-lg",
             placeholder: () => "text-sm",
           }}
           theme={(theme) => ({
