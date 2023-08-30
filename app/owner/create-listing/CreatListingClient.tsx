@@ -87,7 +87,7 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
   const guestCount = watch("guestCount");
   const price = watch("price");
 
-  console.log(features);
+  console.log("Price", price);
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -432,9 +432,9 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
           <PriceInput
             id="price"
             value={price}
+            onChange={(value) => setCustomValue("price", value)}
             register={register}
             errors={errors}
-            defaultValue={price}
             isDisabled={isLoading}
             required
           />

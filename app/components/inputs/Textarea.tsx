@@ -33,7 +33,6 @@ const Textarea: React.FC<TextareaProps> = ({
         placeholder={placeholder || " "}
         disabled={isDisabled}
         value={value}
-        defaultValue={value}
         maxLength={maxChar}
         className={`peer w-full ${
           id === "title" ? "min-h-[25vh] text-2xl" : "min-h-[40vh] text-lg"
