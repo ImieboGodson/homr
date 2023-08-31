@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Select from "react-select";
 import useWorldStates from "@/app/hooks/useWorldStates";
 
@@ -13,12 +12,6 @@ export type locationSelectValue = {
   countryFlag: string | undefined;
   region: string;
 };
-
-const defaultOptions = [
-  { value: "sale", label: "Sale" },
-  { value: "buy", label: "Buy" },
-  { value: "lease", label: "Lease" },
-];
 
 interface CountrySelectProps {
   id: string;
@@ -35,12 +28,7 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
   onChange,
   placeholder,
 }) => {
-  const [options, setOptions] = useState(defaultOptions);
-
-  const { getAllStates, getByStateName, getByStateName_unformatted } =
-    useWorldStates();
-
-  console.log("State: ", getByStateName_unformatted("Lagos"));
+  const { getAllStates } = useWorldStates();
 
   return (
     <div className="w-full flex flex-col items-start gap-1">

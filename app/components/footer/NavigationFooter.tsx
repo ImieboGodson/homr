@@ -21,7 +21,7 @@ const NavigationFooter: React.FC<NavigationFooterProps> = ({
         secondaryAction && secondaryActionLabel
           ? "justify-between"
           : "justify-end"
-      } items-center bg-white border-t-4`}
+      } items-center bg-white border-t-4 z-50`}
     >
       {secondaryAction && secondaryActionLabel && (
         <div className="w-28">

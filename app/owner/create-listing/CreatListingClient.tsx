@@ -25,6 +25,7 @@ import CountrySelect from "@/app/components/inputs/CountrySelect";
 import Textarea from "@/app/components/inputs/Textarea";
 import PriceInput from "@/app/components/inputs/PriceInput";
 import dynamic from "next/dynamic";
+import ImageUpload from "@/app/components/inputs/ImageUpload";
 
 enum STEPS {
   "USER" = 0,
@@ -87,6 +88,8 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
   const bathroomCount = watch("bathroomCount");
   const guestCount = watch("guestCount");
   const price = watch("price");
+
+  console.log("Photos", images);
 
   const Map = useMemo(
     () => dynamic(() => import("../../components/map/Map"), { ssr: false }),
@@ -384,60 +387,35 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
           subtitle="Add 3 pictures that displays the beauty of your place."
         />
         <div className="w-full grid grid-cols-2 gap-4">
-          <div className="relative col-span-2 h-[45vh] flex flex-row justify-center items-center border border-dashed">
+          <div className="relative col-span-2 h-[45vh]">
             {images.length >= 1 && (
               <div className="absolute top-3 left-3 py-2 px-2.5 text-base font-bold bg-white rounded-md shadow-sm z-30">
                 Cover Photo
               </div>
             )}
-            {images.length >= 1 && (
-              <div className="absolute inset-0 bg-transparent z-20">
-                <Image
-                  src={images[0]}
-                  alt="cover photo"
-                  fill
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            )}
-            <div className="flex flex-col gap-2 items-center">
-              <TbPhotoPlus size={40} />
-              <div className="text-base font-semibold underline cursor-pointer">
-                Add a cover photo
-              </div>
-            </div>
+            <ImageUpload
+              onChange={(value) => setCustomValue("images", [...images, value])}
+              value={images[0]}
+              isCoverPhoto
+            />
           </div>
           {images.length > 0 && (
             <div className="col-span-2 grid grid-cols-2 gap-4">
-              <div className="relative col-span-1 h-[45vh] flex flex-row justify-center items-center border border-dashed cursor-pointer">
-                {images.length >= 2 && (
-                  <div className="absolute inset-0 bg-transparent z-20">
-                    <Image
-                      src={images[2]}
-                      alt="cover photo"
-                      fill
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                )}
-                <div className="flex flex-col gap-2 items-center">
-                  <TbPhotoPlus size={35} className="text-neutral-400" />
-                </div>
+              <div className="relative col-span-1 h-[45vh]">
+                <ImageUpload
+                  onChange={(value) =>
+                    setCustomValue("images", [...images, value])
+                  }
+                  value={images[1]}
+                />
               </div>
-              <div className="relative col-span-1 h-[45vh] flex flex-row justify-center items-center border border-dashed cursor-pointer">
-                {images.length >= 3 && (
-                  <div className="absolute inset-0 bg-transparent z-20">
-                    <Image
-                      src={images[3]}
-                      alt="cover photo"
-                      fill
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                )}
-                <div className="flex flex-col gap-2 items-center">
-                  <TbPhotoPlus size={35} className="text-neutral-400" />
-                </div>
+              <div className="relative col-span-1 h-[45vh]">
+                <ImageUpload
+                  onChange={(value) =>
+                    setCustomValue("images", [...images, value])
+                  }
+                  value={images[2]}
+                />
               </div>
             </div>
           )}
