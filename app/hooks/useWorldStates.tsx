@@ -1,5 +1,4 @@
-import { Covered_By_Your_Grace } from "next/font/google";
-import { City, State, Country } from "worldpedia";
+import { State, Country } from "worldpedia";
 
 const states = State.getAllStates();
 const countries = Country.getAllCountries();
@@ -11,12 +10,12 @@ const getByCountryCode = (code: string) => {
 };
 
 const formattedStates = states.map((state) => ({
-  name: state.name,
+  value: state.name,
   label: state.name,
   code: state.countryCode,
   latlng: [state.latitude, state.longitude],
-  countryName: getByCountryCode(state.countryCode)?.name,
-  countryFlag: getByCountryCode(state.countryCode)?.flag,
+  country: getByCountryCode(state.countryCode)?.name,
+  flag: getByCountryCode(state.countryCode)?.flag,
   region: getByCountryCode(state.countryCode)?.subregion,
 }));
 
@@ -28,7 +27,7 @@ const useWorldStates = () => {
   };
 
   const getByStateName = (name: string) => {
-    return formattedStates.find((state) => name === state.name);
+    return formattedStates.find((state) => name === state.value);
   };
 
   return {

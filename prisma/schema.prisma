@@ -60,7 +60,7 @@ model Listing {
   roomCount     Int
   bathroomCount Int
   type          String
-  status        String
+  isAvailable   Boolean
   price         Int
   createdAt     DateTime @default(now())
 

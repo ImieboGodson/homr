@@ -8,12 +8,12 @@ export type locationSelectValue = {
   label: string;
   latlng: number[];
   code: string;
-  countryName: string;
-  countryFlag: string | undefined;
+  country: string;
+  flag: string | undefined;
   region: string;
 };
 
-interface CountrySelectProps {
+interface locationSelectProps {
   id: string;
   value?: locationSelectValue;
   placeholder?: string;
@@ -21,7 +21,7 @@ interface CountrySelectProps {
   isDisabled?: boolean;
 }
 
-const CountrySelect: React.FC<CountrySelectProps> = ({
+const LocationSelect: React.FC<locationSelectProps> = ({
   id,
   value,
   isDisabled,
@@ -50,9 +50,7 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
               <div>{option.code}</div>
               <div>
                 {option.label},
-                <span className="text-neutral-500 ml-1">
-                  {option.countryName}
-                </span>
+                <span className="text-neutral-500 ml-1">{option.country}</span>
               </div>
             </div>
           )}
@@ -75,4 +73,4 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
   );
 };
 
-export default CountrySelect;
+export default LocationSelect;

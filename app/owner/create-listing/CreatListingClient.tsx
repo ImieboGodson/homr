@@ -21,7 +21,7 @@ import {
   listingFeatures,
 } from "@/app/libs/options";
 import Input from "@/app/components/inputs/Input";
-import CountrySelect from "@/app/components/inputs/CountrySelect";
+import LocationSelect from "@/app/components/inputs/LocationSelect";
 import Textarea from "@/app/components/inputs/Textarea";
 import PriceInput from "@/app/components/inputs/PriceInput";
 import dynamic from "next/dynamic";
@@ -89,7 +89,7 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
   const guestCount = watch("guestCount");
   const price = watch("price");
 
-  console.log("Photos", images);
+  // console.log("Photos", images);
 
   const Map = useMemo(
     () => dynamic(() => import("../../components/map/Map"), { ssr: false }),
@@ -153,24 +153,25 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
       return onNext();
     }
 
-    // setIsLoading(true);
+    setIsLoading(true);
 
     console.log("FORM DATA: ", data);
 
-    // axios
-    //   .post("/api/listings", data)
-    //   .then(() => {
-    //     toast.success("Listing created");
-    //     reset();
-    //     setStep(STEPS.USER);
-    //     router.push("/owner");
-    //   })
-    //   .catch((error: any) => {
-    //     toast.error(error);
-    //   })
-    //   .finally(() => {
-    //     setIsLoading(false);
-    //   });
+    axios
+      .post("/api/listings", data)
+      .then(() => {
+        toast.success("Listing created");
+        router.refresh();
+        reset();
+        setStep(STEPS.USER);
+        router.push("/owner");
+      })
+      .catch((error: any) => {
+        toast.error("Oops, something broke.");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   let bodyContent = (
@@ -257,7 +258,7 @@ const CreatListingClient: React.FC<CreatListingClientProps> = ({
           consideration."
         />
         <div className="w-full flex flex-col gap-4 ">
-          <CountrySelect
+          <LocationSelect
             id="location"
             value={location}
             onChange={(value) => setCustomValue("location", value)}
