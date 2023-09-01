@@ -1,44 +1,54 @@
 "use client";
 
+import formatPrice from "@/app/hooks/usePriceFormat";
+import { SafeListing, SafeUser } from "@/app/types";
 import Image from "next/image";
+import React from "react";
 import { IoBedOutline } from "react-icons/io5";
 import { LiaBathSolid } from "react-icons/lia";
 import { RxDimensions } from "react-icons/rx";
 
 interface ListingCardProps {
-  currentUser?: {} | null;
-  data: {};
+  currentUser?: SafeUser | null;
+  data: SafeListing;
   actionId?: string;
   actionLabel?: string;
   onAction?: (id: string) => void;
   isDisabled?: boolean;
 }
 
-const ListingCard = () => {
+const ListingCard: React.FC<ListingCardProps> = ({
+  currentUser,
+  data,
+  actionId,
+  onAction,
+  actionLabel,
+  isDisabled,
+}) => {
   return (
     <div className="group w-full flex flex-col gap-4 cursor-pointer">
       <div className="relative w-full rounded-lg aspect-8/5 overflow-hidden">
         <Image
-          src="/images/post-1.jpg"
+          src={data.images[0]}
           alt="listing picture"
           fill
           className="object-cover group-hover:scale-125 transition"
         />
       </div>
       <div className="w-full flex flex-col gap-[2px] items-start">
-        <div className="text-sm font-bold">$5,800</div>
-        <div className="text-base font-extrabold">Luxury Family Home</div>
-        <div className="text-sm font-light text-gray-400">
-          137 Greene Borbane Ave
+        <div className="text-sm font-bold">
+          ${formatPrice(data.price)} / year
         </div>
+        <div className="text-base font-extrabold">{data.title}</div>
+        <div className="text-sm font-light text-gray-400">{data.location}</div>
         <div className="mt-2 w-full flex flex-row gap-1.5 justify-start items-center">
           <div className="flex flex-row gap-1 items-center">
             <IoBedOutline size={13} />
-            <div className="text-xs">2 Beds</div>
+            <div className="text-xs">{data.roomCount} Beds</div>
           </div>
           <div className="flex flex-row gap-1 items-center">
             <LiaBathSolid size={13} />
-            <div className="text-xs">2 Baths</div>
+            <div className="text-xs">{data.bathroomCount} Baths</div>
           </div>
           <div className="flex flex-row gap-1 items-center">
             <RxDimensions size={13} />
