@@ -86,7 +86,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                   <MenuItem title="Wishlists" onClick={() => {}} />
                 </div>
                 <div className="py-2 border-t-[1px]">
-                  <MenuItem title="List a home" onClick={() => {}} />
+                  <MenuItem title="List a home" onClick={handleClick} />
                   <MenuItem title="Account" onClick={() => {}} />
                 </div>
                 <div className="py-2 border-t-[1px]">

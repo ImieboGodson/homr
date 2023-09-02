@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import prisma from '@/app/libs/prismadb'
 import getCurrentUser from "@/app/actions/getCurrentUser";
 
-export async function POST( request: Request) {
+export async function POST( request: Request ) {
 
     const currentUser = await getCurrentUser();
 
@@ -40,7 +40,7 @@ export async function POST( request: Request) {
             description,
             images,
             category,
-            location: location.value,
+            location: `${location.value}, ${location.country}`,
             roomCount,
             bathroomCount,
             guestCount,
