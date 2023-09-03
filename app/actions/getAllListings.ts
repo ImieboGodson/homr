@@ -11,7 +11,7 @@ export interface ListingsParams {
     price?: number;
 }
 
-export default async function getListings(params : ListingsParams) {
+export default async function getAllListings(params : ListingsParams) {
 
     try {
 

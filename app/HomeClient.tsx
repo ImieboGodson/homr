@@ -16,9 +16,22 @@ import { useRouter } from "next/navigation";
 import CityCard from "./components/cards/CityCard";
 import HeroSearch from "./components/HeroSearch";
 import Search from "./components/navbar/Search";
+import { SafeListing, SafeUser } from "./types";
+import getCurrentUser from "./actions/getCurrentUser";
+import ClientOnly from "./components/ClientOnly";
 
-const HomeClient = () => {
+interface HomeClientProps {
+  currentUser?: SafeUser | null;
+  recentListings: SafeListing[];
+}
+
+const HomeClient: React.FC<HomeClientProps> = ({
+  currentUser,
+  recentListings,
+}) => {
   const router = useRouter();
+
+  console.log("Current User HomeClient: ", currentUser);
   return (
     <div className="flex flex-col">
       <section className=" bg-white pb-12">
@@ -218,16 +231,19 @@ const HomeClient = () => {
                   </div>
                 </div>
               </Heading>
-              <div className="w-full grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-                <ListingCard />
-                <ListingCard />
-                <ListingCard />
-                <ListingCard />
-                <ListingCard />
-                <ListingCard />
-                <ListingCard />
-                <ListingCard />
-              </div>
+              <ClientOnly>
+                <div className="w-full grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+                  {recentListings.map((listing) => {
+                    return (
+                      <ListingCard
+                        key={listing.id}
+                        currentUser={currentUser}
+                        data={listing}
+                      />
+                    );
+                  })}
+                </div>
+              </ClientOnly>
             </div>
           </div>
         </Container>
@@ -423,9 +439,9 @@ const HomeClient = () => {
                 </p>
                 <div className="w-[10rem] mt-4">
                   <Button
-                    title="Register Now"
+                    title="Start Now"
                     icon={BsArrowUpRight}
-                    onClick={() => {}}
+                    onClick={() => router.push("/owner/create-listing")}
                     primary
                   />
                 </div>

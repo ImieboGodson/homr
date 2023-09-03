@@ -1,5 +1,5 @@
 import getCurrentUser from "../actions/getCurrentUser";
-import getListings, { ListingsParams } from "../actions/getListings";
+import getAllListings, { ListingsParams } from "../actions/getAllListings";
 import ClientOnly from "../components/ClientOnly";
 import Container from "../components/Container";
 import EmptyState from "../components/EmptyState";
@@ -10,7 +10,7 @@ interface ListingsProps {
 }
 
 const Listings = async ({ searchParams }: ListingsProps) => {
-  const listings = await getListings(searchParams);
+  const listings = await getAllListings(searchParams);
   const currentUser = await getCurrentUser();
 
   if (listings.length === 0) {
