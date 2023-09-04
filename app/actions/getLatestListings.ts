@@ -8,7 +8,7 @@ export default async function getLatestListings() {
             orderBy: {
                 createdAt: 'desc'
             },
-            take: 6
+            take: 4
         });
 
 

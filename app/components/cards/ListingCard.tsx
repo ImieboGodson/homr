@@ -41,9 +41,16 @@ const ListingCard: React.FC<ListingCardProps> = ({
       </div>
       <div className="w-full flex flex-col gap-[2px] items-start">
         <div className="text-sm font-bold">
-          ${formatPrice(data.price)} / month
+          $
+          {`${formatPrice(data.price)} ${
+            data.category === "Rent"
+              ? "/ month"
+              : data.category === "Shortlet"
+              ? "/ night"
+              : ""
+          }`}
         </div>
-        <div className="text-base font-extrabold">{data.title}</div>
+        <div className="text-base font-extrabold truncate">{data.title}</div>
         <div className="text-sm font-light text-gray-400">{data.location}</div>
         <div className="mt-2 w-full flex flex-row gap-1.5 justify-start items-center">
           <div className="flex flex-row gap-1 items-center">

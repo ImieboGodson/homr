@@ -16,22 +16,25 @@ import { useRouter } from "next/navigation";
 import CityCard from "./components/cards/CityCard";
 import HeroSearch from "./components/HeroSearch";
 import Search from "./components/navbar/Search";
-import { SafeListing, SafeUser } from "./types";
+import { SafeCity, SafeListing, SafeUser } from "./types";
 import getCurrentUser from "./actions/getCurrentUser";
 import ClientOnly from "./components/ClientOnly";
 
 interface HomeClientProps {
   currentUser?: SafeUser | null;
   recentListings: SafeListing[];
+  topCities: SafeCity[] | null;
 }
 
 const HomeClient: React.FC<HomeClientProps> = ({
   currentUser,
   recentListings,
+  topCities,
 }) => {
   const router = useRouter();
 
-  console.log("Current User HomeClient: ", currentUser);
+  console.log("Cities: ", topCities);
+
   return (
     <div className="flex flex-col">
       <section className=" bg-white pb-12">
@@ -182,37 +185,43 @@ const HomeClient: React.FC<HomeClientProps> = ({
         </Container>
       </section>
 
-      <section className="bg-white my-2">
-        <Container>
-          <div className="xl:px-32 py-8">
-            <div className="w-full flex flex-col gap-14 items-center">
-              <Heading
-                title="Properties by Cities"
-                subtitle="We have top-tier listings in every city that matters."
-                secondayAction
-              >
-                <div
-                  onClick={() => router.push("/listings/cities")}
-                  className="flex flex-row gap-1 items-center justify-between cursor-pointer"
+      {topCities && (
+        <section className="bg-white my-2">
+          <Container>
+            <div className="xl:px-32 py-8">
+              <div className="w-full flex flex-col gap-14 items-center">
+                <Heading
+                  title="Properties by Cities"
+                  subtitle="We have top-tier listings in every city that matters."
+                  secondayAction
                 >
-                  <div className="text-sm font-extrabold">See all cities</div>
-                  <BsArrowUpRight size={16} />
-                </div>
-              </Heading>
-              <div className="w-full grid gap-x-4 gap-y-8 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-                <CityCard />
-                <CityCard />
-                <CityCard />
-                <CityCard />
-                <CityCard />
-                <CityCard />
-                <CityCard />
-                <CityCard />
+                  <div
+                    onClick={() => router.push("/listings/cities")}
+                    className="flex flex-row gap-1 items-center justify-between cursor-pointer hover:underline"
+                  >
+                    <div className="text-sm font-extrabold">See all cities</div>
+                    <BsArrowUpRight size={16} />
+                  </div>
+                </Heading>
+                <ClientOnly>
+                  <div className="w-full grid gap-x-4 gap-y-8 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+                    {topCities.map((city) => {
+                      return (
+                        <CityCard
+                          key={city.id}
+                          city={city.name}
+                          image={city.image}
+                          listings={city.listings}
+                        />
+                      );
+                    })}
+                  </div>
+                </ClientOnly>
               </div>
             </div>
-          </div>
-        </Container>
-      </section>
+          </Container>
+        </section>
+      )}
       <section className="bg-white my-2">
         <Container>
           <div className="xl:px-32 py-20">
@@ -222,13 +231,14 @@ const HomeClient: React.FC<HomeClientProps> = ({
                 subtitle="Get the best of the latest listing around the world."
                 secondayAction
               >
-                <div className="md:w-[20%] flex flex-row gap-2 items-center justify-between">
-                  <div className="w-[8rem]">
-                    <Button title="For Sale" onClick={() => {}} />
+                <div
+                  onClick={() => router.push("/listings")}
+                  className="flex flex-row gap-1 items-center justify-between cursor-pointer hover:underline"
+                >
+                  <div className="text-sm font-extrabold">
+                    See all properties
                   </div>
-                  <div className="w-[8rem]">
-                    <Button title="For Rent" onClick={() => {}} outline />
-                  </div>
+                  <BsArrowUpRight size={16} />
                 </div>
               </Heading>
               <ClientOnly>
