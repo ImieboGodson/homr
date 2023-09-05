@@ -17,7 +17,6 @@ import CityCard from "./components/cards/CityCard";
 import HeroSearch from "./components/HeroSearch";
 import Search from "./components/navbar/Search";
 import { SafeCity, SafeListing, SafeUser } from "./types";
-import getCurrentUser from "./actions/getCurrentUser";
 import ClientOnly from "./components/ClientOnly";
 
 interface HomeClientProps {
@@ -33,7 +32,7 @@ const HomeClient: React.FC<HomeClientProps> = ({
 }) => {
   const router = useRouter();
 
-  console.log("Cities: ", topCities);
+  // console.log("Latest Listing: ", recentListings);
 
   return (
     <div className="flex flex-col">
@@ -222,42 +221,44 @@ const HomeClient: React.FC<HomeClientProps> = ({
           </Container>
         </section>
       )}
-      <section className="bg-white my-2">
-        <Container>
-          <div className="xl:px-32 py-20">
-            <div className="w-full flex flex-col gap-14 items-center">
-              <Heading
-                title="Latest Properties"
-                subtitle="Get the best of the latest listing around the world."
-                secondayAction
-              >
-                <div
-                  onClick={() => router.push("/listings")}
-                  className="flex flex-row gap-1 items-center justify-between cursor-pointer hover:underline"
+      {recentListings.length !== 0 && (
+        <section className="bg-white my-2">
+          <Container>
+            <div className="xl:px-32 py-20">
+              <div className="w-full flex flex-col gap-14 items-center">
+                <Heading
+                  title="Latest Properties"
+                  subtitle="Get the best of the latest listing around the world."
+                  secondayAction
                 >
-                  <div className="text-sm font-extrabold">
-                    See all properties
+                  <div
+                    onClick={() => router.push("/listings")}
+                    className="flex flex-row gap-1 items-center justify-between cursor-pointer hover:underline"
+                  >
+                    <div className="text-sm font-extrabold">
+                      See all properties
+                    </div>
+                    <BsArrowUpRight size={16} />
                   </div>
-                  <BsArrowUpRight size={16} />
-                </div>
-              </Heading>
-              <ClientOnly>
-                <div className="w-full grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-                  {recentListings.map((listing) => {
-                    return (
-                      <ListingCard
-                        key={listing.id}
-                        currentUser={currentUser}
-                        data={listing}
-                      />
-                    );
-                  })}
-                </div>
-              </ClientOnly>
+                </Heading>
+                <ClientOnly>
+                  <div className="w-full grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+                    {recentListings.map((listing) => {
+                      return (
+                        <ListingCard
+                          key={listing.id}
+                          currentUser={currentUser}
+                          data={listing}
+                        />
+                      );
+                    })}
+                  </div>
+                </ClientOnly>
+              </div>
             </div>
-          </div>
-        </Container>
-      </section>
+          </Container>
+        </section>
+      )}
       <section className="bg-white">
         <Container>
           <div className="xl:px-32 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
