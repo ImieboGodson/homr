@@ -16,9 +16,24 @@ import { useRouter } from "next/navigation";
 import CityCard from "./components/cards/CityCard";
 import HeroSearch from "./components/HeroSearch";
 import Search from "./components/navbar/Search";
+import { SafeCity, SafeListing, SafeUser } from "./types";
+import ClientOnly from "./components/ClientOnly";
 
-const HomeClient = () => {
+interface HomeClientProps {
+  currentUser?: SafeUser | null;
+  recentListings: SafeListing[];
+  topCities: SafeCity[] | null;
+}
+
+const HomeClient: React.FC<HomeClientProps> = ({
+  currentUser,
+  recentListings,
+  topCities,
+}) => {
   const router = useRouter();
+
+  // console.log("Latest Listing: ", recentListings);
+
   return (
     <div className="flex flex-col">
       <section className=" bg-white pb-12">
@@ -169,69 +184,81 @@ const HomeClient = () => {
         </Container>
       </section>
 
-      <section className="bg-white my-2">
-        <Container>
-          <div className="xl:px-32 py-8">
-            <div className="w-full flex flex-col gap-14 items-center">
-              <Heading
-                title="Properties by Cities"
-                subtitle="We have top-tier listings in every city that matters."
-                secondayAction
-              >
-                <div
-                  onClick={() => router.push("/listings/cities")}
-                  className="flex flex-row gap-1 items-center justify-between cursor-pointer"
+      {topCities && (
+        <section className="bg-white my-2">
+          <Container>
+            <div className="xl:px-32 py-8">
+              <div className="w-full flex flex-col gap-14 items-center">
+                <Heading
+                  title="Properties by Cities"
+                  subtitle="We have top-tier listings in every city that matters."
+                  secondayAction
                 >
-                  <div className="text-sm font-extrabold">See all cities</div>
-                  <BsArrowUpRight size={16} />
-                </div>
-              </Heading>
-              <div className="w-full grid gap-x-4 gap-y-8 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-                <CityCard />
-                <CityCard />
-                <CityCard />
-                <CityCard />
-                <CityCard />
-                <CityCard />
-                <CityCard />
-                <CityCard />
+                  <div
+                    onClick={() => router.push("/listings/cities")}
+                    className="flex flex-row gap-1 items-center justify-between cursor-pointer hover:underline"
+                  >
+                    <div className="text-sm font-extrabold">See all cities</div>
+                    <BsArrowUpRight size={16} />
+                  </div>
+                </Heading>
+                <ClientOnly>
+                  <div className="w-full grid gap-x-4 gap-y-8 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+                    {topCities.map((city) => {
+                      return (
+                        <CityCard
+                          key={city.id}
+                          city={city.name}
+                          image={city.image}
+                          listings={city.listings}
+                        />
+                      );
+                    })}
+                  </div>
+                </ClientOnly>
               </div>
             </div>
-          </div>
-        </Container>
-      </section>
-      <section className="bg-white my-2">
-        <Container>
-          <div className="xl:px-32 py-20">
-            <div className="w-full flex flex-col gap-14 items-center">
-              <Heading
-                title="Latest Properties"
-                subtitle="Get the best of the latest listing around the world."
-                secondayAction
-              >
-                <div className="md:w-[20%] flex flex-row gap-2 items-center justify-between">
-                  <div className="w-[8rem]">
-                    <Button title="For Sale" onClick={() => {}} />
+          </Container>
+        </section>
+      )}
+      {recentListings.length !== 0 && (
+        <section className="bg-white my-2">
+          <Container>
+            <div className="xl:px-32 py-20">
+              <div className="w-full flex flex-col gap-14 items-center">
+                <Heading
+                  title="Latest Properties"
+                  subtitle="Get the best of the latest listing around the world."
+                  secondayAction
+                >
+                  <div
+                    onClick={() => router.push("/listings")}
+                    className="flex flex-row gap-1 items-center justify-between cursor-pointer hover:underline"
+                  >
+                    <div className="text-sm font-extrabold">
+                      See all properties
+                    </div>
+                    <BsArrowUpRight size={16} />
                   </div>
-                  <div className="w-[8rem]">
-                    <Button title="For Rent" onClick={() => {}} outline />
+                </Heading>
+                <ClientOnly>
+                  <div className="w-full grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+                    {recentListings.map((listing) => {
+                      return (
+                        <ListingCard
+                          key={listing.id}
+                          currentUser={currentUser}
+                          data={listing}
+                        />
+                      );
+                    })}
                   </div>
-                </div>
-              </Heading>
-              <div className="w-full grid gap-x-4 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-                <ListingCard />
-                <ListingCard />
-                <ListingCard />
-                <ListingCard />
-                <ListingCard />
-                <ListingCard />
-                <ListingCard />
-                <ListingCard />
+                </ClientOnly>
               </div>
             </div>
-          </div>
-        </Container>
-      </section>
+          </Container>
+        </section>
+      )}
       <section className="bg-white">
         <Container>
           <div className="xl:px-32 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
@@ -423,9 +450,9 @@ const HomeClient = () => {
                 </p>
                 <div className="w-[10rem] mt-4">
                   <Button
-                    title="Register Now"
+                    title="Start Now"
                     icon={BsArrowUpRight}
-                    onClick={() => {}}
+                    onClick={() => router.push("/owner/create-listing")}
                     primary
                   />
                 </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import {
   FaFacebookF,
   FaTwitter,
@@ -15,6 +16,12 @@ import Subscribe from "../inputs/Subscribe";
 import Link from "next/link";
 
 const Footer = () => {
+  const pathname = usePathname();
+
+  if (pathname === "/owner/create-listing") {
+    return null;
+  }
+
   return (
     <div className="w-full h-fit bg-[#20262E] text-sm text-white">
       <Container>

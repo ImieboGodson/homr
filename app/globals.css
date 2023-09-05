@@ -7,6 +7,29 @@ html, body, :root {
   width: 100%;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.leaflet-bottom,
+.leaflet-control,
+.leaflet-pane,
+.leaflet-top {
+  z-index: 0 !important;
+}
+
+input[type='number']::-webkit-inner-spin-button {
+  display: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 .animate-custom-bounce {
   animation: bounce 5s infinite;
