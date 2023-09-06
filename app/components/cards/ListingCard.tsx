@@ -29,9 +29,11 @@ const ListingCard: React.FC<ListingCardProps> = ({
   return (
     <div className="group w-full flex flex-col gap-4 cursor-pointer">
       <div className="relative w-full rounded-lg aspect-8/5 overflow-hidden">
-        <div className="absolute top-2 right-3 z-20">
-          <HeartButton listingId={data.id} currentUser={currentUser} />
-        </div>
+        {currentUser?.id !== data.userId && (
+          <div className="absolute top-2 right-3 z-20">
+            <HeartButton listingId={data.id} currentUser={currentUser} />
+          </div>
+        )}
         <Image
           src={data.images[0]}
           alt="listing picture"
