@@ -4,7 +4,7 @@ import { IconType } from "react-icons/lib";
 
 interface ButtonProps {
   title: string;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
   outline?: boolean;
   primary?: boolean;
   icon?: IconType;
@@ -12,6 +12,8 @@ interface ButtonProps {
   socialLogin?: boolean;
   navType?: boolean;
   noBorder?: boolean;
+  favoriteButton?: boolean;
+  isFavorited?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -24,6 +26,8 @@ const Button: React.FC<ButtonProps> = ({
   socialLogin,
   navType,
   noBorder,
+  favoriteButton,
+  isFavorited,
 }) => {
   return (
     <div
@@ -47,8 +51,16 @@ const Button: React.FC<ButtonProps> = ({
       }`}
     >
       {Icon && socialLogin && <Icon size={18} className="absolute left-4" />}
+      {Icon && !socialLogin && favoriteButton && (
+        <Icon
+          size={18}
+          className={`${isFavorited ? "fill-red-500" : "fill-black"}`}
+        />
+      )}
       {title}
-      {Icon && !authType && !socialLogin && <Icon size={18} />}
+      {Icon && !authType && !socialLogin && !favoriteButton && (
+        <Icon size={18} />
+      )}
     </div>
   );
 };

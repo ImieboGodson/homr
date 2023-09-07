@@ -24,6 +24,6 @@ export default async function getCities() {
 
         return safeCities;
     } catch(error: any) {
-        throw new Error('Something went wrong.');
+        throw new Error(error);
     }
 }

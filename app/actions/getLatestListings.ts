@@ -20,6 +20,6 @@ export default async function getLatestListings() {
         return safeListings;
 
     } catch(error: any) {
-        throw new Error('Something went wrong.')
+        throw new Error(error);
     }
 }
