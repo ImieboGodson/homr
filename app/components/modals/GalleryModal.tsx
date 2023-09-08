@@ -8,7 +8,7 @@ import HeartButton from "../HeartButton";
 import { SafeUser } from "@/app/types";
 import Image from "next/image";
 
-interface SliderProps {
+interface GalleryModalProps {
   listingId: string;
   currentUser?: SafeUser | null;
   photos: string[];
@@ -17,7 +17,7 @@ interface SliderProps {
   isDisable?: boolean;
 }
 
-const Slider: React.FC<SliderProps> = ({
+const GalleryModal: React.FC<GalleryModalProps> = ({
   photos,
   listingId,
   currentUser,
@@ -29,7 +29,7 @@ const Slider: React.FC<SliderProps> = ({
   const [imageArray, setImageArray] = useState(photos);
   const [currentIndex, setCurrentIndex] = useState(1);
 
-  const gallaryModal = useGalleryModal();
+  const galleryModal = useGalleryModal();
 
   useEffect(() => {
     setTimeout(() => {
@@ -44,9 +44,9 @@ const Slider: React.FC<SliderProps> = ({
 
     setShowModal(false);
     setTimeout(() => {
-      gallaryModal.onClose();
+      galleryModal.onClose();
     }, 300);
-  }, [isDisable, gallaryModal]);
+  }, [isDisable, galleryModal]);
 
   const onBack = () => {
     if (currentIndex === 1) {
@@ -130,4 +130,4 @@ const Slider: React.FC<SliderProps> = ({
   );
 };
 
-export default Slider;
+export default GalleryModal;
