@@ -51,7 +51,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         )}
         <div
           onClick={handleClick}
-          className="py-3 px-5 text-sm font-semibold hover:bg-gray-100 text-black cursor-pointer rounded-lg transition"
+          className="hidden lg:block py-1 px-2 xl:py-3 xl:px-5 text-sm font-semibold hover:bg-gray-100 text-black cursor-pointer rounded-lg transition"
         >
           List a home
         </div>
@@ -59,13 +59,13 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
       <div className="p-[5px] flex flex-row gap-2 justify-between items-center border-l-2 cursor-pointer">
         <div
           onClick={handleToggle}
-          className="ml-4 flex flex-row gap-2 justify-between items-center"
+          className="ml-2 lg:ml-4 flex flex-row gap-2 justify-between items-center"
         >
           <div className="hidden md:block">
             <Avatar userImage={currentUser?.image} />
           </div>
           {currentUser && (
-            <div className="flex flex-col items-start max-w-[150px] overflow-hidden">
+            <div className="hidden lg:flex flex-col items-start max-w-[150px] overflow-hidden">
               <div className="text-xs font-bold truncate">
                 {currentUser.name}
               </div>
@@ -77,7 +77,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <IoIosArrowDown size={18} />
         </div>
         {dropMenu.isOpen && (
-          <div className="absolute right-0 top-12 md:w-[60%] w-[40vw] py-2 flex flex-col bg-white rounded-lg shadow-lg">
+          <div className="absolute right-0 top-12 w-[60vw] sm:w-[28vw] lg:w-[20vw] xl:w-[16vw] py-2 flex flex-col bg-white rounded-lg shadow-lg">
             {currentUser ? (
               <>
                 <div className="pb-2 font-bold">
