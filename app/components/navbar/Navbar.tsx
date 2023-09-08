@@ -18,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
       <div className="py-6">
         <Container>
           <div className="flex flex-row justify-between items-center">
-            <div className="">
+            <div>
               <Logo />
             </div>
             {pathname === "/listings" && (

@@ -92,18 +92,18 @@ const Slider: React.FC<SliderProps> = ({
               </div>
             </div>
             <div className="w-full h-full flex flex-row overflow-hidden bg-yellow-500">
-              <div className="h-full w-[10vw] bg-black flex flex-col items-center justify-center">
+              <div className="w-0 h-full sm:w-[10vw] bg-black sm:flex sm:flex-col items-center justify-center">
                 {currentIndex !== 1 && (
                   <div
                     onClick={onBack}
-                    className="p-4 rounded-full border border-white text-white cursor-pointer"
+                    className="absolute bottom-20 left-24 sm:static p-4 rounded-full border border-white text-white cursor-pointer"
                   >
                     <FaChevronLeft size={12} />
                   </div>
                 )}
               </div>
-              <div className="h-full w-[80vw] flex flex-row items-center justify-center bg-black">
-                <div className="relative w-[50vw] h-[65vh]">
+              <div className="h-full w-full sm:w-[80vw] flex flex-row items-center justify-center bg-black">
+                <div className="relative w-[85vw] h-[35vh] sm:w-[50vw] sm:h-[65vh]">
                   <Image
                     src={imageArray[currentIndex - 1]}
                     fill
@@ -112,11 +112,11 @@ const Slider: React.FC<SliderProps> = ({
                   />
                 </div>
               </div>
-              <div className="h-full w-[10vw] bg-black flex flex-col items-center justify-center">
+              <div className="w-0 h-full sm:w-[10vw] bg-black sm:flex sm:flex-col items-center justify-center">
                 {currentIndex !== imageArray.length && (
                   <div
                     onClick={onNext}
-                    className="p-4 rounded-full border border-white text-white cursor-pointer"
+                    className="absolute bottom-20 right-24 sm:static p-4 rounded-full border border-white text-white cursor-pointer"
                   >
                     <FaChevronRight size={12} />
                   </div>
