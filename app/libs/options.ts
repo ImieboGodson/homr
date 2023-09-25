@@ -15,18 +15,21 @@ export const listingTypes = [
         icon: PiHouseLine,
         label: "An entire place",
         subtitle: "Guests have the whole to themselves.",
+        context: "You will have the whole place to yourself."
     },
     {
         icon: BsDoorClosed,
         label: "A room",
         subtitle:
         "Guests have their own room in a home, plus access to shared spaces.",
+        context: "Your own room in a home, plus access to shared spaces."
     },
     {
         icon: FaPeopleRoof,
         label: "A shared room",
         subtitle:
-        "Guests sleep in a room or common area that may be shared with you or other.",
+        "Guests sleep in a room or common area that may be shared with you or others.",
+        context: "Your will stay in a shared room or common area that may be shared with you or others."
     },
 ];
   

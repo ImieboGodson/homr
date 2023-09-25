@@ -18,6 +18,6 @@ export default async function getTopCities () {
 
         return safeCities;
     } catch (error: any) {
-        throw new Error('Ooops, Something went wrong.')
+        throw new Error(error);
     }
 }

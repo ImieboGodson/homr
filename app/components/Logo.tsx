@@ -11,7 +11,7 @@ const Logo = () => {
       className="flex flex-row items-end cursor-pointer"
     >
       <Image src="/images/logo.png" alt="logo" height={35} width={35} />
-      <div className="text-xl font-extrabold">HOMR</div>
+      <div className="hidden md:block text-xl font-extrabold">HOMR</div>
     </div>
   );
 };

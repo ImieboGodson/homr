@@ -13,7 +13,7 @@ const formattedStates = states.map((state) => ({
   value: state.name,
   label: state.name,
   code: state.countryCode,
-  latlng: [state.latitude, state.longitude],
+  latlng: [Number(state.latitude), Number(state.longitude)],
   country: getByCountryCode(state.countryCode)?.name,
   flag: getByCountryCode(state.countryCode)?.flag,
   region: getByCountryCode(state.countryCode)?.subregion,

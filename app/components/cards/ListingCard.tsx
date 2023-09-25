@@ -8,6 +8,7 @@ import { IoBedOutline } from "react-icons/io5";
 import { LiaBathSolid } from "react-icons/lia";
 import { RxDimensions } from "react-icons/rx";
 import HeartButton from "../HeartButton";
+import { useRouter } from "next/navigation";
 
 interface ListingCardProps {
   currentUser?: SafeUser | null;
@@ -26,8 +27,12 @@ const ListingCard: React.FC<ListingCardProps> = ({
   actionLabel,
   isDisabled,
 }) => {
+  const router = useRouter();
   return (
-    <div className="group w-full flex flex-col gap-4 cursor-pointer">
+    <div
+      onClick={() => router.push(`/listings/${data.id}`)}
+      className="group w-full flex flex-col gap-4 cursor-pointer overflow-hidden"
+    >
       <div className="relative w-full rounded-lg aspect-8/5 overflow-hidden">
         {currentUser?.id !== data.userId && (
           <div className="absolute top-2 right-3 z-20">
@@ -53,7 +58,9 @@ const ListingCard: React.FC<ListingCardProps> = ({
           }`}
         </div>
         <div className="text-base font-extrabold truncate">{data.title}</div>
-        <div className="text-sm font-light text-gray-400">{data.location}</div>
+        <div className="text-sm font-light text-gray-400 truncate">
+          {data.location}
+        </div>
         <div className="mt-2 w-full flex flex-row gap-1.5 justify-start items-center">
           <div className="flex flex-row gap-1 items-center">
             <IoBedOutline size={13} />
