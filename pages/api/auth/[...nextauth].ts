@@ -1,7 +1,8 @@
 
 import bcrypt from 'bcrypt'
 import NextAuth, { AuthOptions } from 'next-auth'
-import { PrismaAdapter } from "@auth/prisma-adapter"
+// import type { Adapter } from 'next-auth/adapters';
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GitHubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
