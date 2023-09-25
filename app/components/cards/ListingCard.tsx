@@ -31,7 +31,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
-      className="group w-full flex flex-col gap-4 cursor-pointer"
+      className="group w-full flex flex-col gap-4 cursor-pointer overflow-hidden"
     >
       <div className="relative w-full rounded-lg aspect-8/5 overflow-hidden">
         {currentUser?.id !== data.userId && (
@@ -58,7 +58,9 @@ const ListingCard: React.FC<ListingCardProps> = ({
           }`}
         </div>
         <div className="text-base font-extrabold truncate">{data.title}</div>
-        <div className="text-sm font-light text-gray-400">{data.location}</div>
+        <div className="text-sm font-light text-gray-400 truncate">
+          {data.location}
+        </div>
         <div className="mt-2 w-full flex flex-row gap-1.5 justify-start items-center">
           <div className="flex flex-row gap-1 items-center">
             <IoBedOutline size={13} />

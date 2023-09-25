@@ -50,7 +50,10 @@ const ListingCaption: React.FC<ListingCaptionProps> = ({
           <BsGrid1X2 size={15} />
           View all photos
         </div>
-        <div className="relative col-span-3 md:col-span-2 row-span-2 opacity-90 hover:opacity-100 cursor-pointer bg-black transition">
+        <div
+          onClick={() => galleryModal.onOpen()}
+          className="relative col-span-3 md:col-span-2 row-span-2 opacity-90 hover:opacity-100 cursor-pointer bg-black transition"
+        >
           <Image
             src={images[0]}
             fill
@@ -58,7 +61,10 @@ const ListingCaption: React.FC<ListingCaptionProps> = ({
             className="w-full object-cover"
           />
         </div>
-        <div className="hidden md:block relative col-span-1 row-span-1 opacity-90 hover:opacity-100 cursor-pointer bg-black transition">
+        <div
+          onClick={() => galleryModal.onOpen()}
+          className="hidden md:block relative col-span-1 row-span-1 opacity-90 hover:opacity-100 cursor-pointer bg-black transition"
+        >
           <Image
             src={images[1]}
             fill
@@ -66,7 +72,10 @@ const ListingCaption: React.FC<ListingCaptionProps> = ({
             className="w-full object-cover"
           />
         </div>
-        <div className="hidden md:block relative col-span-1 row-span-1 opacity-90 hover:opacity-100 cursor-pointer bg-black transition">
+        <div
+          onClick={() => galleryModal.onOpen()}
+          className="hidden md:block relative col-span-1 row-span-1 opacity-90 hover:opacity-100 cursor-pointer bg-black transition"
+        >
           <Image
             src={images[2]}
             fill

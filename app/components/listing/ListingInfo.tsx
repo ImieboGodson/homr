@@ -6,14 +6,39 @@ import { useMemo } from "react";
 import { PiHouseLineBold, PiDesktopTower, PiHouseLine } from "react-icons/pi";
 import { BsCalendar2Date } from "react-icons/bs";
 import { TfiLocationPin } from "react-icons/tfi";
+import { listingTypes, listingFeatures } from "@/app/libs/options";
+import { IconType } from "react-icons/lib";
+import ListingItem from "./ListingItem";
+import ListingFeature from "./ListingFeature";
+
+type ListingType = {
+  icon: IconType;
+  label: string;
+  subtitle: string;
+  context: string;
+};
+
+type ListingFeature = {
+  icon: IconType;
+  label: string;
+};
 
 interface ListingInfoProps {
   listing: SafeListing & {
     user: SafeUser;
   };
+  listingType?: ListingType | null;
 }
 
-const ListingInfo: React.FC<ListingInfoProps> = ({ listing }) => {
+const ListingInfo: React.FC<ListingInfoProps> = ({ listing, listingType }) => {
+  console.log("this: ", listingType);
+
+  const getPlaceholderLetter = useMemo(() => {
+    const nameArray = listing.user.name.split("");
+
+    return nameArray[0];
+  }, [listing.user]);
+
   const category = useMemo(() => {
     if (listing.category === "Rent") {
       return "Rental unit listed";
@@ -23,6 +48,32 @@ const ListingInfo: React.FC<ListingInfoProps> = ({ listing }) => {
       return "Property for sale listed";
     }
   }, [listing]);
+
+  const features = useMemo(() => {
+    // if (!listingFeatures) {
+    //   return [];
+    // }
+
+    const flattenedArray = listingFeatures.flat(1);
+
+    const featuresArray = listing.features.map((feat) => {
+      let feature = flattenedArray.find((item) => item.label === feat);
+
+      if (!feature) {
+        return;
+      }
+
+      return feature;
+    });
+
+    if (!featuresArray) {
+      return [];
+    }
+
+    return featuresArray;
+  }, [listing.features]);
+
+  console.log("FEATURES II: ", features);
 
   return (
     <div className="w-full flex flex-col gap-8">
@@ -39,55 +90,64 @@ const ListingInfo: React.FC<ListingInfoProps> = ({ listing }) => {
           {listing.user.image ? (
             <Image
               src={listing.user.image}
-              height={35}
-              width={35}
+              height={55}
+              width={55}
               alt="Cover photo"
               className="w-full object-cover"
             />
           ) : (
             <div className="w-[55px] h-[55px] flex flex-row items-center justify-center bg-neutral-900 text-white text-lg font-bold rounded-full">
-              M
+              {getPlaceholderLetter}
             </div>
           )}
         </div>
       </div>
       <div className="py-6 border-t border-b flex flex-col gap-6 items-start">
-        <div className="flex flex-row gap-4 items-start justify-start">
-          <PiHouseLine size={25} className="text-neutral-800" />
-          <div className="flex flex-col items-start justify-start">
-            <div className="text-lg font-semibold">Room in a rental unit</div>
-            <div className="text-sm font-light text-neutral-500">
-              Your own room in a home, plus access to shared spaces.
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-row gap-4 items-start justify-start">
-          <PiDesktopTower size={25} className="text-neutral-800" />
-          <div className="flex flex-col items-start justify-start">
-            <div className="text-lg font-semibold">Dedicated Workspace</div>
-            <div className="text-sm font-light text-neutral-500">
-              Your own room in a home, plus access to shared spaces.
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-row gap-4 items-start justify-start">
-          <TfiLocationPin size={25} className="text-neutral-800" />
-          <div className="flex flex-col items-start justify-start">
-            <div className="text-lg font-semibold">Great location</div>
-            <div className="text-sm font-light text-neutral-500">
-              100% of recent guests gave the location a 5-star rating.
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-row gap-4 items-start justify-start">
-          <BsCalendar2Date size={25} className="text-neutral-800" />
-          <div className="flex flex-col items-start justify-start">
-            <div className="text-lg font-semibold">
-              Free Cancellation for 48 hours.
-            </div>
-          </div>
-        </div>
+        {listingType && (
+          <ListingItem
+            icon={listingType.icon}
+            label={listingType.label}
+            subtitle={listingType.context}
+          />
+        )}
+        {listing.category === "Shortlet" && (
+          <ListingItem
+            icon={TfiLocationPin}
+            label="Great location"
+            subtitle="100% of recent guests gave the location a 5-star rating."
+          />
+        )}
+        {listing.category === "Shortlet" && (
+          <ListingItem
+            icon={BsCalendar2Date}
+            label="Free Cancellation for 48 hours."
+          />
+        )}
       </div>
+      {listing.description && (
+        <div className="pb-12 flex flex-col gap-4 items-start border-b">
+          <div className="text-2xl font-bold">About this place</div>
+          <div className="text-base font-normal">{listing.description}</div>
+        </div>
+      )}
+      {listing.features && listing.features.length !== 0 && (
+        <div className="pb-12 flex flex-col gap-5 items-start border-b">
+          <div className="text-2xl font-bold">What this place offers</div>
+          {features && features[0] ? (
+            <div className="w-full grid gap-5 grid-cols-1 lg:grid-cols-2">
+              {features.map((item) => (
+                <ListingFeature
+                  key={item?.label}
+                  icon={item?.icon}
+                  label={item?.label}
+                />
+              ))}
+            </div>
+          ) : (
+            <div>No feature is added by owner</div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
