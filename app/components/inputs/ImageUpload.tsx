@@ -36,7 +36,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       {({ open }) => {
         return (
           <div
-            onClick={() => open()}
+            onClick={() => open?.()}
             className={`w-full h-full flex flex-row justify-center items-center border border-dashed cursor-pointer`}
           >
             {value && (
