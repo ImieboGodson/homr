@@ -3,10 +3,9 @@
 import { SafeListing, SafeUser } from "@/app/types";
 import Image from "next/image";
 import { useMemo } from "react";
-import { PiHouseLineBold, PiDesktopTower, PiHouseLine } from "react-icons/pi";
 import { BsCalendar2Date } from "react-icons/bs";
 import { TfiLocationPin } from "react-icons/tfi";
-import { listingTypes, listingFeatures } from "@/app/libs/options";
+import { listingFeatures } from "@/app/libs/options";
 import { IconType } from "react-icons/lib";
 import ListingItem from "./ListingItem";
 import ListingFeature from "./ListingFeature";
@@ -31,7 +30,7 @@ interface ListingInfoProps {
 }
 
 const ListingInfo: React.FC<ListingInfoProps> = ({ listing, listingType }) => {
-  console.log("this: ", listingType);
+  // console.log("this: ", listing.category);
 
   const getPlaceholderLetter = useMemo(() => {
     const nameArray = listing.user.name.split("");
@@ -72,8 +71,6 @@ const ListingInfo: React.FC<ListingInfoProps> = ({ listing, listingType }) => {
 
     return featuresArray;
   }, [listing.features]);
-
-  console.log("FEATURES II: ", features);
 
   return (
     <div className="w-full flex flex-col gap-8">

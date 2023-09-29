@@ -23,6 +23,15 @@ html, body, :root {
   z-index: 0 !important;
 }
 
+.rdrMonth {
+  width: 100% !important;
+}
+
+.rdrCalendarWrapper {
+  font-size: 13px !important;
+  width: 100% !important;
+}
+
 input[type='number']::-webkit-inner-spin-button {
   display: none;
 }

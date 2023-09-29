@@ -21,10 +21,10 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  accounts Account[]
-  listings Listing[]
-  bookings Booking[]
-  viewings Viewing[]
+  accounts     Account[]
+  listings     Listing[]
+  reservations Reservation[]
+  viewings     Viewing[]
 }
 
 model Account {
@@ -64,8 +64,8 @@ model Listing {
   price         Int
   createdAt     DateTime @default(now())
 
-  bookings Booking[]
-  viewings Viewing[]
+  reservations Reservation[]
+  viewings     Viewing[]
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -80,17 +80,14 @@ model City {
   updatedAt DateTime @updatedAt
 }
 
-model Booking {
-  id             String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId         String   @db.ObjectId
-  listingId      String   @db.ObjectId
-  startDate      DateTime
-  endDate        DateTime
-  guestCount     Int
-  category       String
-  paymentType    String
-  stateOfPayment String
-  totalPrice     Int
+model Reservation {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String   @db.ObjectId
+  listingId  String   @db.ObjectId
+  startDate  DateTime
+  endDate    DateTime
+  guestCount Int
+  totalPrice Int
 
   user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   Listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
