@@ -12,8 +12,7 @@ interface ButtonProps {
   socialLogin?: boolean;
   navType?: boolean;
   noBorder?: boolean;
-  favoriteButton?: boolean;
-  isFavorited?: boolean;
+  isDisabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -26,13 +25,16 @@ const Button: React.FC<ButtonProps> = ({
   socialLogin,
   navType,
   noBorder,
-  favoriteButton,
-  isFavorited,
+  isDisabled,
 }) => {
   return (
     <div
       onClick={onClick}
-      className={` relative w-full flex flex-row gap-1 justify-center items-center  font-bold ${
+      className={`${
+        isDisabled
+          ? "cursor-not-allowed bg-neutral-600 hover:bg-neutral-500"
+          : ""
+      } relative w-full flex flex-row gap-1 justify-center items-center  font-bold ${
         authType
           ? "py-3 text-lg"
           : `${navType ? "text-base" : "text-sm"} py-2.5`
@@ -51,16 +53,8 @@ const Button: React.FC<ButtonProps> = ({
       }`}
     >
       {Icon && socialLogin && <Icon size={18} className="absolute left-4" />}
-      {Icon && !socialLogin && favoriteButton && (
-        <Icon
-          size={18}
-          className={`${isFavorited ? "fill-red-500" : "fill-black"}`}
-        />
-      )}
       {title}
-      {Icon && !authType && !socialLogin && !favoriteButton && (
-        <Icon size={18} />
-      )}
+      {Icon && !authType && !socialLogin && <Icon size={18} />}
     </div>
   );
 };

@@ -19,7 +19,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
         <Container>
           <div className="flex flex-row justify-between items-center">
             <div>
-              <Logo />
+              <Logo currentUser={currentUser} />
             </div>
             {pathname === "/listings" && (
               <div className="sm:ml-12 md:ml-16 lg:ml-20 xl:ml-52 ">

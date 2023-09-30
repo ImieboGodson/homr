@@ -69,7 +69,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 overflow-hidden flex justify-center items-center bg-neutral-800/70 z-50">
+    <div className="fixed inset-0 overflow-hidden flex justify-center items-center bg-neutral-800/70 z-40">
       <div className="w-[100vw] h-[100vh] my-6">
         <div
           className={`w-full h-full  translate duration-300 ${

@@ -59,6 +59,7 @@ const ListingCaption: React.FC<ListingCaptionProps> = ({
             fill
             alt="Cover photo"
             className="w-full object-cover"
+            priority
           />
         </div>
         <div
@@ -70,6 +71,7 @@ const ListingCaption: React.FC<ListingCaptionProps> = ({
             fill
             alt="Cover photo"
             className="w-full object-cover"
+            priority
           />
         </div>
         <div
@@ -81,6 +83,7 @@ const ListingCaption: React.FC<ListingCaptionProps> = ({
             fill
             alt="Cover photo"
             className="w-full object-cover"
+            priority
           />
         </div>
       </div>

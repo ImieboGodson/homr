@@ -4,7 +4,7 @@ interface IListingParams {
     listingId: string
 }
 
-export default async function getListingById ({ params }: { params: IListingParams }) {
+export default async function getListingById ( params: IListingParams ) {
 
     try {
 
