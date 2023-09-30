@@ -6,7 +6,7 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
-import Button from "../Button";
+import Button from "../buttons/Button";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithubAlt } from "react-icons/fa";
 import { FieldValues, useForm, SubmitHandler } from "react-hook-form";

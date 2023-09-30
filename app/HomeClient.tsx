@@ -6,7 +6,7 @@ import { BiPlus } from "react-icons/bi";
 import { TbUserStar, TbMoneybag, TbSmartHome } from "react-icons/tb";
 import { PiKey } from "react-icons/pi";
 import Container from "./components/Container";
-import Button from "./components/Button";
+import Button from "./components/buttons/Button";
 import PostCard from "./components/cards/PostCard";
 import InquiryForm from "./components/InquiryForm";
 import CustomerCard from "./components/cards/CustomerCard";

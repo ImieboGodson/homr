@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 
 import { IconType } from "react-icons/lib";
-import Button from "./Button";
+import Button from "./buttons/Button";
 
 interface EmptyStateProps {
   title?: string;

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import TextSelect, { optionValue } from "./inputs/TextSelect";
 import Input from "./inputs/Input";
-import Button from "./Button";
+import Button from "./buttons/Button";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
 
 const InquiryForm = () => {

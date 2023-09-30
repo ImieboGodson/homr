@@ -4,14 +4,16 @@ import Container from "@/app/components/Container";
 import EmptyState from "@/app/components/EmptyState";
 import ListingClient from "./ListingClient";
 import getCurrentUser from "@/app/actions/getCurrentUser";
+import getReservations from "@/app/actions/getReservations";
 
-interface IListingParams {
+interface IParams {
   listingId: string;
 }
 
-const ListingPage = async (params: { params: IListingParams }) => {
-  const listing = await getListingById(params);
+const ListingPage = async ({ params }: { params: IParams }) => {
   const currentUser = await getCurrentUser();
+  const listing = await getListingById(params);
+  const reservations = await getReservations(params);
 
   // console.log("Listing", listing);
 
@@ -31,7 +33,11 @@ const ListingPage = async (params: { params: IListingParams }) => {
   return (
     <ClientOnly>
       <Container>
-        <ListingClient listing={listing} currentUser={currentUser} />
+        <ListingClient
+          listing={listing}
+          currentUser={currentUser}
+          reservations={reservations}
+        />
       </Container>
     </ClientOnly>
   );
