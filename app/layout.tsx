@@ -9,6 +9,8 @@ import ClientOnly from "./components/ClientOnly";
 import ToastProvider from "./providers/ToastProvider";
 import getCurrentUser from "./actions/getCurrentUser";
 import RegisterModal from "./components/modals/RegisterModal";
+import DisclaimerModal from "./components/modals/DisclaimerModal";
+import ViewingModal from "./components/modals/ViewingModal";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -32,6 +34,8 @@ export default async function RootLayout({
           <Navbar currentUser={currentUser} />
           <LoginModal />
           <RegisterModal />
+          <DisclaimerModal />
+          <ViewingModal />
         </ClientOnly>
         <div className="pt-24">{children}</div>
         <Footer />

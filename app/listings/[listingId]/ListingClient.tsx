@@ -1,7 +1,7 @@
 "use client";
 
 import Button from "@/app/components/buttons/Button";
-import Calendar from "@/app/components/inputs/Calendar";
+import RangeCalendar from "@/app/components/inputs/RangeCalendar";
 import ListingCaption from "@/app/components/listing/ListingCaption";
 import ListingHeading from "@/app/components/listing/ListingHeading";
 import ListingInfo from "@/app/components/listing/ListingInfo";
@@ -9,6 +9,7 @@ import ListingReservation from "@/app/components/listing/ListingReservation";
 import SaveButton from "@/app/components/listing/SaveButton";
 import Map from "@/app/components/map/Map";
 import GalleryModal from "@/app/components/modals/GalleryModal";
+import useDisclaimerModal from "@/app/hooks/useDisclaimerModal";
 import useFavorite from "@/app/hooks/useFavorite";
 import useGalleryModal from "@/app/hooks/useGalleryModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -18,6 +19,7 @@ import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import axios from "axios";
 import { differenceInDays, eachDayOfInterval } from "date-fns";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Range } from "react-date-range";
 import toast from "react-hot-toast";
@@ -54,6 +56,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
 
   const galleryModal = useGalleryModal();
   const loginModal = useLoginModal();
+  const disclaimerModal = useDisclaimerModal();
+  const router = useRouter();
   const { getByStateName } = useWorldStates();
   const cityName = listing.location.split(", ")[0];
   const position = getByStateName(cityName);
@@ -124,6 +128,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
       .then(() => {
         toast.success("Reservation Successful");
         setDateRange(initialDateRange);
+        setGuestCount(1);
+        router.refresh();
       })
       .catch(() => {
         toast.error("Something went wrong");
@@ -131,7 +137,33 @@ const ListingClient: React.FC<ListingClientProps> = ({
       .finally(() => {
         setIsLoading(false);
       });
-  }, [currentUser, loginModal, totalPrice, listing.id, guestCount, dateRange]);
+  }, [
+    currentUser,
+    loginModal,
+    totalPrice,
+    listing.id,
+    guestCount,
+    dateRange,
+    router,
+  ]);
+
+  const handleAction = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
+
+    if (listing.category === "Shortlet") {
+      return onCreateReservation();
+    }
+
+    return disclaimerModal.onOpen();
+  }, [
+    listing.category,
+    onCreateReservation,
+    disclaimerModal,
+    currentUser,
+    loginModal,
+  ]);
 
   return (
     <div className="w-full">
@@ -159,7 +191,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                   How long are you staying for?
                 </div>
                 <div className="w-full flex flex-row items-center">
-                  <Calendar
+                  <RangeCalendar
                     value={dateRange}
                     onChange={(value) => onChange(value.selection)}
                     disabledDates={disabledDates}
@@ -170,11 +202,12 @@ const ListingClient: React.FC<ListingClientProps> = ({
           </div>
           <div className="relative col-span-3 md:col-span-1 flex flex-col">
             <ListingReservation
+              currentUser={currentUser}
               startDate={dateRange.startDate}
               endDate={dateRange.endDate}
               guestCount={guestCount}
               onGuestChange={(value) => setGuestCount(value)}
-              onClick={onCreateReservation}
+              onClick={handleAction}
               price={listing.price}
               dayCount={dayCount}
               totalPrice={totalPrice}
