@@ -12,15 +12,15 @@ export async function POST ( request:Request ) {
 
     const body = await request.json();
 
-    const { username, date, time, listingId } = body;
+    const { date, listingId } = body;
 
-    if(!username || !date || !time || !listingId) {
+    if(!date || !listingId) {
         return NextResponse.error();
     }
 
     const viewing = await prisma.viewing.create({
         data: {
-            username,
+            username: currentUser.name,
             date,
             listingId,
             userId: currentUser.id

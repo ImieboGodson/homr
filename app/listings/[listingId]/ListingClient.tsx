@@ -8,6 +8,8 @@ import ListingInfo from "@/app/components/listing/ListingInfo";
 import ListingReservation from "@/app/components/listing/ListingReservation";
 import SaveButton from "@/app/components/listing/SaveButton";
 import Map from "@/app/components/map/Map";
+import ContactModal from "@/app/components/modals/ContactModal";
+import DisclaimerModal from "@/app/components/modals/DisclaimerModal";
 import GalleryModal from "@/app/components/modals/GalleryModal";
 import useDisclaimerModal from "@/app/hooks/useDisclaimerModal";
 import useFavorite from "@/app/hooks/useFavorite";
@@ -53,6 +55,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
   const [costOfNights, setCostOfNights] = useState(listing.price);
   const [dayCount, setDayCount] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [disclaimerContext, setDisclaimerContext] = useState("");
 
   const galleryModal = useGalleryModal();
   const loginModal = useLoginModal();
@@ -147,23 +150,28 @@ const ListingClient: React.FC<ListingClientProps> = ({
     router,
   ]);
 
-  const handleAction = useCallback(() => {
-    if (!currentUser) {
-      return loginModal.onOpen();
-    }
+  const handleAction = useCallback(
+    (context: string) => {
+      if (!currentUser) {
+        return loginModal.onOpen();
+      }
 
-    if (listing.category === "Shortlet") {
-      return onCreateReservation();
-    }
+      if (listing.category === "Shortlet") {
+        return onCreateReservation();
+      }
 
-    return disclaimerModal.onOpen();
-  }, [
-    listing.category,
-    onCreateReservation,
-    disclaimerModal,
-    currentUser,
-    loginModal,
-  ]);
+      setDisclaimerContext(context);
+
+      return disclaimerModal.onOpen();
+    },
+    [
+      listing.category,
+      onCreateReservation,
+      disclaimerModal,
+      currentUser,
+      loginModal,
+    ]
+  );
 
   return (
     <div className="w-full">
@@ -173,6 +181,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
         listingId={listing.id}
         currentUser={currentUser}
       />
+      <DisclaimerModal onClickContext={disclaimerContext} />
+      <ContactModal ownerType={listing.userType} data={listing.user} />
       <div className="mt-5 mb-12 md:my-12 w-full md:w-[85vw] mx-auto flex flex-col gap-12">
         <ListingCaption
           currentUser={currentUser}

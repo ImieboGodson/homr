@@ -31,12 +31,12 @@ export const userRole = [
 ]
 
 export const tourTimes = [
-    { value: "10:00 am", label: "10:00 am" },
-    { value: "11:00 am", label: "11:00 am" },
-    { value: "12:00 pm", label: "12:00 pm" },
-    { value: "1:00 pm", label: "1:00 pm" },
-    { value: "2:00 pm", label: "2:00 pm" },
-    { value: "3:00 pm", label: "3:00 pm" },
+    { value: "10:00", label: "10:00 am" },
+    { value: "11:00", label: "11:00 am" },
+    { value: "12:00", label: "12:00 pm" },
+    { value: "13:00", label: "1:00 pm" },
+    { value: "14:00", label: "2:00 pm" },
+    { value: "15:00", label: "3:00 pm" },
 ]
 
 export const listingTypes = [

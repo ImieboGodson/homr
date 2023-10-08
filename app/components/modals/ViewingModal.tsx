@@ -7,13 +7,49 @@ import TextSelect from "../inputs/TextSelect";
 import { tourTimes } from "@/app/libs/options";
 import BasicCalendar from "../inputs/BasicCalendar";
 import { useCallback, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const ViewingModal = () => {
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(tourTimes[0]);
-  const viewModal = useViewingModal();
+  const [isLoading, setIsLoading] = useState(false);
+  const viewingModal = useViewingModal();
+  const router = useRouter();
+  const params = useParams();
 
-  const onSubmit = useCallback(() => {}, []);
+  const onSubmit = useCallback(() => {
+    if (!date || !time) {
+      return;
+    }
+
+    setIsLoading(true);
+
+    const rawDate = date;
+
+    const timeArray = time.value.split(":");
+    rawDate.setHours(Number(timeArray[0]), Number(timeArray[1]), 0);
+
+    axios
+      .post("/api/viewings", {
+        date: rawDate,
+        listingId: params?.listingId,
+      })
+      .then(() => {
+        setDate(new Date());
+        setTime(tourTimes[0]);
+        viewingModal.onClose();
+        toast.success("Viewing booked!");
+        router.refresh();
+      })
+      .catch(() => {
+        toast.error("Something broke.");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [date, time, params?.listingId, viewingModal, router]);
 
   const body = (
     <div className="w-full flex flex-col gap-6 items-start">
@@ -37,15 +73,15 @@ const ViewingModal = () => {
           />
         </div>
       </div>
-      <Button title="Schedule Tour" onClick={() => {}} />
+      <Button title="Schedule Tour" onClick={onSubmit} isDisabled={isLoading} />
     </div>
   );
 
   return (
     <Modal
       title="Schedule A Tour"
-      isOpen={viewModal.isOpen}
-      onClose={viewModal.onClose}
+      isOpen={viewingModal.isOpen}
+      onClose={viewingModal.onClose}
       body={body}
     />
   );

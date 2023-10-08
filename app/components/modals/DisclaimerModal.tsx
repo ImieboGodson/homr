@@ -6,16 +6,28 @@ import useDisclaimerModal from "@/app/hooks/useDisclaimerModal";
 import Button from "../buttons/Button";
 import { PiWarningDuotone } from "react-icons/pi";
 import { useCallback } from "react";
+import useContactModal from "@/app/hooks/useContactModal";
 
-const DisclaimerModal = () => {
+interface DisclaimerModalProps {
+  onClickContext: string;
+}
+
+const DisclaimerModal: React.FC<DisclaimerModalProps> = ({
+  onClickContext,
+}) => {
   const disclaimerModal = useDisclaimerModal();
   const viewModal = useViewingModal();
+  const contactModal = useContactModal();
 
   const handleClick = useCallback(() => {
     disclaimerModal.onClose();
 
+    if (onClickContext === "contact") {
+      return contactModal.onOpen();
+    }
+
     return viewModal.onOpen();
-  }, [disclaimerModal, viewModal]);
+  }, [disclaimerModal, viewModal, contactModal, onClickContext]);
 
   const body = (
     <div className="w-full flex flex-col gap-12 items-center justify-center">
