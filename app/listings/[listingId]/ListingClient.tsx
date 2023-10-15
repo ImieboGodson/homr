@@ -132,7 +132,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
         toast.success("Reservation Successful");
         setDateRange(initialDateRange);
         setGuestCount(1);
-        router.refresh();
+        router.push("/reservations");
       })
       .catch(() => {
         toast.error("Something went wrong");

@@ -3,12 +3,13 @@
 import formatPrice from "@/app/hooks/usePriceFormat";
 import { SafeListing, SafeUser } from "@/app/types";
 import Image from "next/image";
-import React from "react";
+import React, { useCallback } from "react";
 import { IoBedOutline } from "react-icons/io5";
 import { LiaBathSolid } from "react-icons/lia";
 import { RxDimensions } from "react-icons/rx";
 import HeartButton from "../HeartButton";
 import { useRouter } from "next/navigation";
+import Button from "../buttons/Button";
 
 interface ListingCardProps {
   currentUser?: SafeUser | null;
@@ -23,11 +24,23 @@ const ListingCard: React.FC<ListingCardProps> = ({
   currentUser,
   data,
   actionId,
-  onAction,
   actionLabel,
+  onAction,
   isDisabled,
 }) => {
   const router = useRouter();
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation();
+
+      if (!onAction || !actionId) return;
+
+      onAction(actionId);
+    },
+    [actionId, onAction]
+  );
+
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
@@ -75,6 +88,15 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <div className="text-xs">200 sqft</div>
           </div>
         </div>
+        {actionLabel && actionId && onAction && (
+          <div className="mt-4 w-full">
+            <Button
+              title={actionLabel}
+              onClick={handleClick}
+              isDisabled={isDisabled}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

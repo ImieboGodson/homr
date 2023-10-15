@@ -32,7 +32,7 @@ export default async function getReservations ( params : IParams ) {
         const reservations = await prisma.reservation.findMany({
             where: query,
             include:{
-                Listing: true
+                listing: true
             },
             orderBy: {
                 createdAt: 'desc'
@@ -43,13 +43,14 @@ export default async function getReservations ( params : IParams ) {
             return [];
         }
 
-        const safeReservations = reservations.map((item) => ({
-            ...item,
-            startDate: item.startDate.toISOString(),
-            endDate: item.endDate.toISOString(),
+        const safeReservations = reservations.map((reservation) => ({
+            ...reservation,
+            createdAt: reservation.createdAt.toISOString(),
+            startDate: reservation.startDate.toISOString(),
+            endDate: reservation.endDate.toISOString(),
             listing: {
-                ...item.Listing,
-                createdAt: item.Listing.createdAt.toISOString(),
+                ...reservation.listing,
+                createdAt: reservation.listing.createdAt.toISOString(),
             }
         }))
 

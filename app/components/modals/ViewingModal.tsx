@@ -41,7 +41,7 @@ const ViewingModal = () => {
         setTime(tourTimes[0]);
         viewingModal.onClose();
         toast.success("Viewing booked!");
-        router.refresh();
+        router.push("/viewings");
       })
       .catch(() => {
         toast.error("Something broke.");

@@ -23,6 +23,7 @@ export async function POST ( request:Request ) {
             username: currentUser.name,
             date,
             listingId,
+            isConfirmed: false,
             userId: currentUser.id
         }
     })

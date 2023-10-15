@@ -100,11 +100,13 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
                 title={attributes.actionLabel}
                 onClick={() => onClick("contact")}
               />
-              <Button
-                title="Schedule a Tour"
-                onClick={() => onClick("viewing")}
-                outline
-              />
+              {(listingCategory === "Rent" || listingCategory === "Sale") && (
+                <Button
+                  title="Schedule a Tour"
+                  onClick={() => onClick("viewing")}
+                  outline
+                />
+              )}
             </div>
             {listingCategory === "Shortlet" && (
               <div className="w-full text-center text-sm font-light">
