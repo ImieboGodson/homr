@@ -52,7 +52,7 @@ const ViewingsClient: React.FC<ViewingsClientProps> = ({
             actionId={viewing.id}
             onAction={onButtonClick}
             actionLabel="Cancel viewing"
-            isDisabled={isLoading}
+            viewingDate={viewing.date}
           />
         );
       })}

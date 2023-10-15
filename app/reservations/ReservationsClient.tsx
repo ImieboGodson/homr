@@ -52,7 +52,6 @@ const ReservationsClient: React.FC<ReservationsClientProps> = ({
             actionId={reservation.id}
             actionLabel="Cancel reservation"
             onAction={onButtonClick}
-            isDisabled={isLoading}
           />
         );
       })}
