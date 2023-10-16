@@ -11,12 +11,6 @@ export default async function getReservations ( params : IParams ) {
 
     try {
 
-        const currentUser = await getCurrentUser();
-
-        if(!currentUser) {
-            throw new Error('Invalid request');
-        }
-
         const { listingId, userId, authorId } = params;
 
         let query: any = {}

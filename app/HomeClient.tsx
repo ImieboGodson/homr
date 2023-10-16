@@ -195,7 +195,7 @@ const HomeClient: React.FC<HomeClientProps> = ({
                   secondayAction
                 >
                   <div
-                    onClick={() => router.push("/listings/cities")}
+                    onClick={() => router.push("/cities")}
                     className="flex flex-row gap-1 items-center justify-between cursor-pointer hover:underline"
                   >
                     <div className="text-sm font-extrabold">See all cities</div>

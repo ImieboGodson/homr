@@ -13,7 +13,7 @@ export default async function getCities() {
         })
 
         if(!cities || cities.length === 0) {
-            return null;
+            return [];
         }
 
         const safeCities = cities.map((city) => ({
