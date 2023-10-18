@@ -14,6 +14,8 @@ interface ModalProps {
   secondaryActionLable?: string;
   secondaryAction?: () => void;
   isDisable?: boolean;
+  largeWidth?: boolean;
+  normalWidth?: boolean;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -26,6 +28,8 @@ const Modal: React.FC<ModalProps> = ({
   secondaryActionLable,
   body,
   isDisable,
+  largeWidth,
+  normalWidth,
 }) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -68,7 +72,13 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <div className="fixed inset-0 overflow-hidden flex justify-center items-center bg-neutral-800/70 z-50">
-      <div className="w-full md:w-4/6 lg:w-2/4 xl:w-2/5 h-full md:h-auto my-6 ">
+      <div
+        className={`w-full md:w-4/6 ${
+          !normalWidth && !largeWidth && "lg:w-2/4 xl:w-2/5"
+        } ${normalWidth && "lg:w-2/4 xl:w-2/5"} ${
+          largeWidth && "lg:w-2/4 xl:w-3/5"
+        } h-full md:h-auto my-6`}
+      >
         <div
           className={`w-full h-full  translate duration-300 ${
             showModal ? "translate-y-0" : "translate-y-[120%]"
@@ -88,15 +98,19 @@ const Modal: React.FC<ModalProps> = ({
               {body}
             </div>
             {onSubmit && actionLable && (
-              <div className="w-full p-4 flex gap-4 items-center justify-between border-t">
+              <div className="w-full p-4 flex flex-row gap-4 items-center justify-between border-t">
                 {secondaryAction && secondaryActionLable && (
-                  <Button
-                    title={secondaryActionLable}
-                    onClick={handleSecondaryAction}
-                    outline
-                  />
+                  <div className="w-[20%]">
+                    <Button
+                      title={secondaryActionLable}
+                      onClick={handleSecondaryAction}
+                      noBorder
+                    />
+                  </div>
                 )}
-                <Button title={actionLable} onClick={handleSubmit} />
+                <div className="w-[20%]">
+                  <Button title={actionLable} onClick={handleSubmit} />
+                </div>
               </div>
             )}
           </div>

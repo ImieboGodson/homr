@@ -6,7 +6,7 @@ interface SelectOptionProps {
   onClick: (value: string) => void;
   label: string;
   subtitle?: string;
-  icon: IconType;
+  icon?: IconType;
   selected: boolean;
   categorySelect?: boolean;
   small?: boolean;
@@ -46,13 +46,15 @@ const SelectOption: React.FC<SelectOptionProps> = ({
         </div>
         {subtitle && <div className="text-sm font-light ">{subtitle}</div>}
       </div>
-      <div
-        className={`p-2 rounded-lg ${small ? "order-1" : "order-2"} ${
-          categorySelect ? "border bg-neutral-100" : "bg-white"
-        }`}
-      >
-        <Icon className={`${small ? "text-2xl" : "text-3xl"}`} />
-      </div>
+      {Icon && (
+        <div
+          className={`p-2 rounded-lg ${small ? "order-1" : "order-2"} ${
+            categorySelect ? "border bg-neutral-100" : "bg-white"
+          }`}
+        >
+          <Icon className={`${small ? "text-2xl" : "text-3xl"}`} />
+        </div>
+      )}
     </div>
   );
 };

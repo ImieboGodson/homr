@@ -31,7 +31,12 @@ const ListingCaption: React.FC<ListingCaptionProps> = ({
 
   return (
     <div className="w-full flex flex-col gap-8">
-      <ListingHeading title={title} subtitle={location} secondayAction>
+      <ListingHeading
+        title={title}
+        subtitle={location}
+        secondayAction
+        underline
+      >
         {userId !== currentUser?.id && (
           <div className="fixed top-6 right-6 z-50 md:z-0 md:static w-[8%] h-8 md:h-10">
             <SaveButton

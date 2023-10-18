@@ -11,6 +11,7 @@ import getCurrentUser from "./actions/getCurrentUser";
 import RegisterModal from "./components/modals/RegisterModal";
 import DisclaimerModal from "./components/modals/DisclaimerModal";
 import ViewingModal from "./components/modals/ViewingModal";
+import SearchModal from "./components/modals/SearchModal";
 
 const nunito = Nunito({ subsets: ["latin"] });
 
@@ -34,8 +35,8 @@ export default async function RootLayout({
           <Navbar currentUser={currentUser} />
           <LoginModal />
           <RegisterModal />
-          {/* <DisclaimerModal /> */}
           <ViewingModal />
+          <SearchModal />
         </ClientOnly>
         <div className="pt-24">{children}</div>
         <Footer />

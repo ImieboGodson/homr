@@ -1,9 +1,13 @@
 "use client";
 
+import useSearchModal from "@/app/hooks/useSearchModal";
+
 const Search = () => {
+  const searchModal = useSearchModal();
+
   return (
     <div
-      onClick={() => {}}
+      onClick={searchModal.onOpen}
       className="w-fit p-2 flex flex-row justify-between items-center text-sm rounded-md bg-white border shadow-md hover:shadow-lg cursor-pointer transition"
     >
       <div className="py-2 px-3.5 border-r-[1px] font-semibold">Location</div>

@@ -32,8 +32,6 @@ const HomeClient: React.FC<HomeClientProps> = ({
 }) => {
   const router = useRouter();
 
-  // console.log("Latest Listing: ", recentListings);
-
   return (
     <div className="flex flex-col">
       <section className=" bg-white pb-12">
@@ -209,6 +207,7 @@ const HomeClient: React.FC<HomeClientProps> = ({
                         <CityCard
                           key={city.id}
                           city={city.name}
+                          country={city.country}
                           image={city.image}
                           listings={city.listings}
                         />
