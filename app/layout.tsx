@@ -3,13 +3,11 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
-import Modal from "./components/modals/Modal";
 import LoginModal from "./components/modals/LoginModal";
 import ClientOnly from "./components/ClientOnly";
 import ToastProvider from "./providers/ToastProvider";
 import getCurrentUser from "./actions/getCurrentUser";
 import RegisterModal from "./components/modals/RegisterModal";
-import DisclaimerModal from "./components/modals/DisclaimerModal";
 import ViewingModal from "./components/modals/ViewingModal";
 import SearchModal from "./components/modals/SearchModal";
 

@@ -86,13 +86,7 @@ const SearchModal = () => {
     return setCustomValue("features", newFeatures);
   };
 
-  // const onSecondaryAction = useCallback(() => {
-  //   reset();
-  // }, [reset]);
-
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    // setIsLoading(false);
-
     let currentQuery = {};
 
     if (params) {
