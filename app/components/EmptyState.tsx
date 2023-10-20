@@ -11,8 +11,9 @@ interface EmptyStateProps {
   subtitle?: string;
   actionLabel?: string;
   action?: () => void;
-  showReset?: boolean;
+  showButton?: boolean;
   center?: boolean;
+  border?: boolean;
 }
 
 const EmptyState: React.FC<EmptyStateProps> = ({
@@ -22,14 +23,15 @@ const EmptyState: React.FC<EmptyStateProps> = ({
   actionLabel,
   action,
   center,
-  showReset,
+  showButton,
+  border,
 }) => {
   const router = useRouter();
   return (
     <div
-      className={`w-full h-[35vh] flex items-center ${
+      className={`w-full min-h-[30vh] pt-6 pb-12 flex items-start  ${
         center ? "justify-center" : "justify-start"
-      }`}
+      } ${border && "border-y"}`}
     >
       <div
         className={`flex flex-col gap-2 ${
@@ -48,9 +50,9 @@ const EmptyState: React.FC<EmptyStateProps> = ({
           </div>
         )}
         <div className="w-48 mt-4">
-          {showReset && (
+          {showButton && actionLabel && (
             <Button
-              title="Reset"
+              title={actionLabel}
               onClick={() => router.push("/listings")}
               outline
             />

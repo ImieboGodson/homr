@@ -7,8 +7,10 @@ export interface ListingsParams {
     roomCount?: number;
     bathroomCount?: number;
     category?: string;
+    features?: string[];
     type?: string;
-    price?: number;
+    minPrice?: number;
+    maxPrice?: number;
 }
 
 export default async function getAllListings(params : ListingsParams) {
@@ -18,11 +20,12 @@ export default async function getAllListings(params : ListingsParams) {
         const { 
             location, 
             type, 
-            category, 
-            guestCount, 
+            category,
+            features,
             roomCount, 
             bathroomCount, 
-            price 
+            minPrice,
+            maxPrice 
         } = params;
 
         const query: any = {}
@@ -39,9 +42,15 @@ export default async function getAllListings(params : ListingsParams) {
             query.category = category;
         }
 
-        if(guestCount) {
-            query.guestCount = {
-                gte: +guestCount
+        // if(guestCount) {
+        //     query.guestCount = {
+        //         gte: +guestCount
+        //     }
+        // }
+
+        if(features) {
+            query.features = {
+                contains: features,
             }
         }
 
@@ -57,9 +66,15 @@ export default async function getAllListings(params : ListingsParams) {
             }
         }
 
-        if(price) {
+        if(maxPrice) {
             query.price = {
-                lte: -price
+                lte: -maxPrice
+            }
+        }
+
+        if(minPrice) {
+            query.price = {
+                gte: +minPrice
             }
         }
 

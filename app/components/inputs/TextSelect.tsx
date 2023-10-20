@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Select from "react-select";
 
 export type optionValue = {
@@ -8,52 +8,35 @@ export type optionValue = {
   label: string;
 };
 
-const defaultOptions = [
-  { value: "sale", label: "Sale" },
-  { value: "buy", label: "Buy" },
-  { value: "lease", label: "Lease" },
-];
-
 interface TextSelectProps {
-  id: string;
-  type: string;
-  value?: optionValue;
+  id?: string;
+  value: optionValue;
+  options: optionValue[];
   title?: string;
   placeholder?: string;
   onChange: (value: optionValue) => void;
-  isDisabled?: boolean;
+  disabled?: boolean;
+  searchable?: boolean;
+  clearable?: boolean;
+  loading?: boolean;
 }
 
 const TextSelect: React.FC<TextSelectProps> = ({
   id,
   value,
+  options,
   title,
-  type,
-  isDisabled,
+  disabled,
+  searchable,
+  clearable,
+  loading,
   onChange,
   placeholder,
 }) => {
-  const [options, setOptions] = useState(defaultOptions);
-
-  useEffect(() => {
-    if (type === "prefix") {
-      setOptions([
-        { value: "mr", label: "Mr" },
-        { value: "mrs", label: "Mrs" },
-        { value: "miss", label: "Miss" },
-        { value: "sir", label: "Sir" },
-      ]);
-    }
-
-    if (type === "role") {
-      setOptions([
-        { value: "owner", label: "Owner" },
-        { value: "buyer", label: "Buyer" },
-        { value: "agent", label: "Agent" },
-      ]);
-    }
-  }, [type]);
-
+  const [isClearable, setIsClearable] = useState(clearable);
+  const [isSearchable, setIsSearchable] = useState(searchable);
+  const [isDisabled, setIsDisabled] = useState(disabled);
+  const [isLoading, setIsLoading] = useState(loading);
   return (
     <div className="w-full flex flex-col items-start gap-1">
       {title && <div className="text-base font-bold">{title}</div>}
@@ -61,11 +44,14 @@ const TextSelect: React.FC<TextSelectProps> = ({
         <Select
           id={id}
           placeholder={placeholder || "--choose an option--"}
-          defaultValue={null}
+          defaultValue={options[0]}
           value={value}
           onChange={(value) => onChange(value as optionValue)}
           options={options}
           isDisabled={isDisabled}
+          isClearable={isClearable}
+          isLoading={isLoading}
+          isSearchable={isSearchable}
           classNames={{
             placeholder: () => "text-sm",
           }}

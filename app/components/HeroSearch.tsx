@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { LuSettings2, LuSearch, LuMap } from "react-icons/lu";
 import { TbSmartHome } from "react-icons/tb";
+import useSearchModal from "../hooks/useSearchModal";
 
 const HeroSearch = () => {
   const [searchType, setSearchType] = useState("shortlet");
+  const searchModal = useSearchModal();
 
   let bodyContent = (
     <>
@@ -56,10 +58,6 @@ const HeroSearch = () => {
         </div>
         <div className="w-[7rem] py-3 px-2 flex flex-row gap-2 justify-start items-center text-black text-sm font-semibold rounded-lg bg-gray-100">
           <TbSmartHome size={16} />
-          Bedrooms
-        </div>
-        <div className="w-[7rem] py-3 px-2 flex flex-row gap-2 justify-start items-center text-black text-sm font-semibold rounded-lg bg-gray-100">
-          <TbSmartHome size={16} />
           Price
         </div>
       </>
@@ -99,7 +97,10 @@ const HeroSearch = () => {
           Short Let
         </div>
       </div>
-      <div className="w-fit p-4 flex flex-row gap-4 items-center bg-white rounded-tr-lg rounded-b-lg hover:shadow-md cursor-pointer transition">
+      <div
+        onClick={searchModal.onOpen}
+        className="w-fit p-4 flex flex-row gap-4 items-center bg-white rounded-tr-lg rounded-b-lg hover:shadow-md cursor-pointer transition"
+      >
         <div className="flex flex-row gap-3 items-center">{bodyContent}</div>
         {/* <div className=" py-3 px-2 flex flex-row gap-2 items-center justify-start text-black text-sm font-semibold rounded-lg">
           <LuSettings2 size={16} />

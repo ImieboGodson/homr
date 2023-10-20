@@ -5,6 +5,7 @@ import TextSelect, { optionValue } from "./inputs/TextSelect";
 import Input from "./inputs/Input";
 import Button from "./buttons/Button";
 import { useForm, FieldValues, SubmitHandler } from "react-hook-form";
+import { prefixes, propertyType, userRole } from "../libs/options";
 
 const InquiryForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -55,24 +56,26 @@ const InquiryForm = () => {
     <div className="w-full flex flex-col gap-4 items-between">
       <TextSelect
         id="inquiryType"
-        type="inquiry"
         title="Inquiry type"
+        options={propertyType}
         value={inquiryType}
         onChange={(value) =>
           customSetValue("inquiryType", value as optionValue)
         }
-        isDisabled={isLoading}
+        disabled={isLoading}
+        searchable={false}
       />
       <div className="flex flex-row gap-6 items-center justify-end">
         <div className="w-[35%]">
           <TextSelect
             id="prefix"
-            type="prefix"
             title="Title"
             placeholder="select"
+            options={prefixes}
             value={prefix}
             onChange={(value) => customSetValue("prefix", value as optionValue)}
-            isDisabled={isLoading}
+            disabled={isLoading}
+            searchable={false}
           />
         </div>
         <Input
@@ -97,11 +100,12 @@ const InquiryForm = () => {
       />
       <TextSelect
         id="role"
-        type="role"
         title="Personnel role"
+        options={userRole}
         value={role}
         onChange={(value) => customSetValue("role", value as optionValue)}
-        isDisabled={isLoading}
+        disabled={isLoading}
+        searchable={false}
       />
       <div className="flex flex-row gap-6 items-center justify-end">
         <Input

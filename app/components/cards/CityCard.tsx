@@ -1,16 +1,54 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback } from "react";
+import qs from "query-string";
 
 interface CityCardProps {
   city: string;
+  country?: string;
   image?: string;
   listings?: string[];
 }
 
-const CityCard: React.FC<CityCardProps> = ({ city, image, listings }) => {
+const CityCard: React.FC<CityCardProps> = ({
+  city,
+  country,
+  image,
+  listings,
+}) => {
+  const router = useRouter();
+  const params = useSearchParams();
+
+  const handleClick = useCallback(() => {
+    let currentQuery = {};
+
+    if (params) {
+      currentQuery = qs.parse(params.toString());
+    }
+
+    const updatedQuery: any = {
+      ...currentQuery,
+      location: `${city}, ${country}`,
+    };
+
+    const url = qs.stringifyUrl(
+      {
+        url: "/listings",
+        query: updatedQuery,
+      },
+      { skipNull: true }
+    );
+
+    router.push(url);
+  }, [city, country, params, router]);
+
   return (
-    <div className="group w-full grid grid-cols-3 gap-4 cursor-pointer">
+    <div
+      onClick={handleClick}
+      className="group w-full grid grid-cols-3 gap-4 cursor-pointer"
+    >
       <div className="relative col-span-1 rounded-lg aspect-square overflow-hidden">
         <Image
           src={image || "/images/post-2.jpg"}

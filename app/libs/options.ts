@@ -10,6 +10,35 @@ import { MdOutlineNightShelter, MdOutlineSportsFootball, MdOutlineTableBar } fro
 import { RiPassportLine, RiAlarmWarningLine } from 'react-icons/ri'
 import { LiaTableTennisSolid } from 'react-icons/lia'
 
+
+export const propertyType = [
+    { value: "sale", label: "Sale" },
+    { value: "buy", label: "Buy" },
+    { value: "lease", label: "Lease" },
+]
+
+export const prefixes = [
+    { value: "mr", label: "Mr" },
+    { value: "mrs", label: "Mrs" },
+    { value: "miss", label: "Miss" },
+    { value: "sir", label: "Sir" },
+]
+
+export const userRole = [
+    { value: "owner", label: "Owner" },
+    { value: "buyer", label: "Buyer" },
+    { value: "agent", label: "Agent" },
+]
+
+export const tourTimes = [
+    { value: "10:00", label: "10:00 am" },
+    { value: "11:00", label: "11:00 am" },
+    { value: "12:00", label: "12:00 pm" },
+    { value: "13:00", label: "1:00 pm" },
+    { value: "14:00", label: "2:00 pm" },
+    { value: "15:00", label: "3:00 pm" },
+]
+
 export const listingTypes = [
     {
         icon: PiHouseLine,

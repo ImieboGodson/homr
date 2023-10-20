@@ -23,7 +23,7 @@ const Footer = () => {
   }
 
   return (
-    <div className="w-full h-fit bg-[#20262E] text-sm text-white">
+    <div className="lg:mt-16 w-full h-fit bg-[#20262E] text-sm text-white">
       <Container>
         <div className="w-full xl:px-32 flex flex-col">
           <div className="py-6 flex justify-center md:justify-end items-center">

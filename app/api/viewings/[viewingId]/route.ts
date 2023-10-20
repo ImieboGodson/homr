@@ -4,10 +4,10 @@ import prisma from '@/app/libs/prismadb'
 import getCurrentUser from "@/app/actions/getCurrentUser";
 
 interface IParams {
-    reservationId: string;
+    viewingId: string;
 }
 
-export async function DELETE ( request: Request, { params } : { params : IParams }  ) {
+export async function DELETE ( request:Request, { params }: { params :IParams } ) {
 
     const currentUser = await getCurrentUser();
 
@@ -15,27 +15,27 @@ export async function DELETE ( request: Request, { params } : { params : IParams
         return NextResponse.error();
     }
 
-    const { reservationId } = params;
+    const { viewingId } = params;
 
-    if(!reservationId || typeof(reservationId) !== "string") {
-        throw new Error('Invalid ID');
+    if(!viewingId || typeof viewingId !== "string") {
+        throw new Error('Invalid ID')
     }
 
-    const reservation = await prisma.reservation.deleteMany({
+    const viewing = await prisma.viewing.deleteMany({
         where: {
-            id: reservationId,
+            id: viewingId,
             OR: [
                 {
                     userId: currentUser.id
-                }, {
+                },
+                {
                     listing: {
                         userId: currentUser.id
                     }
                 }
             ]
-        }
+        },
     })
 
-    return NextResponse.json('Reservation deleted');
-
+    return NextResponse.json(viewing);
 }

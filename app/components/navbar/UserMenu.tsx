@@ -81,9 +81,18 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             {currentUser ? (
               <>
                 <div className="pb-2 font-bold">
-                  <MenuItem title="Messages" onClick={() => {}} />
-                  <MenuItem title="Scheduled Viewings" onClick={() => {}} />
-                  <MenuItem title="Wishlists" onClick={() => {}} />
+                  <MenuItem
+                    title="Reservations"
+                    onClick={() => router.push("/reservations")}
+                  />
+                  <MenuItem
+                    title="Scheduled Viewings"
+                    onClick={() => router.push("/viewings")}
+                  />
+                  <MenuItem
+                    title="Wishlists"
+                    onClick={() => router.push("/wishlists")}
+                  />
                 </div>
                 <div className="py-2 border-t-[1px]">
                   <MenuItem title="List a home" onClick={handleClick} />

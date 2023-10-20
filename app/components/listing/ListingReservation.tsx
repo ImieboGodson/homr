@@ -5,8 +5,10 @@ import Counter from "../inputs/Counter";
 import Button from "../buttons/Button";
 import formatPrice from "@/app/hooks/usePriceFormat";
 import formatDateString from "@/app/libs/formatDateString";
+import { SafeUser } from "@/app/types";
 
 interface ListingReservationProps {
+  currentUser?: SafeUser | null;
   startDate?: Date;
   endDate?: Date;
   price: number;
@@ -17,11 +19,12 @@ interface ListingReservationProps {
   ownerType: string;
   guestCount: number;
   onGuestChange: (value: number) => void;
-  onClick: () => void;
+  onClick: (value: string) => void;
   disabled?: boolean;
 }
 
 const ListingReservation: React.FC<ListingReservationProps> = ({
+  currentUser,
   startDate,
   endDate,
   totalPrice,
@@ -93,8 +96,17 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
           )}
           <div className="mt-2 w-full flex flex-col gap-2 items-start">
             <div className="w-full flex flex-col gap-3">
-              <Button title={attributes.actionLabel} onClick={onClick} />
-              <Button title="Schedule a Tour" onClick={() => {}} outline />
+              <Button
+                title={attributes.actionLabel}
+                onClick={() => onClick("contact")}
+              />
+              {(listingCategory === "Rent" || listingCategory === "Sale") && (
+                <Button
+                  title="Schedule a Tour"
+                  onClick={() => onClick("viewing")}
+                  outline
+                />
+              )}
             </div>
             {listingCategory === "Shortlet" && (
               <div className="w-full text-center text-sm font-light">

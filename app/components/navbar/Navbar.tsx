@@ -14,8 +14,8 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   const pathname = usePathname();
   return (
-    <div className="fixed w-full z-30 bg-white">
-      <div className="py-6">
+    <div className="fixed w-full z-30 bg-white shadow-sm">
+      <div className="py-4">
         <Container>
           <div className="flex flex-row justify-between items-center">
             <div>

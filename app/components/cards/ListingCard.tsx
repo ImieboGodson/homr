@@ -3,16 +3,18 @@
 import formatPrice from "@/app/hooks/usePriceFormat";
 import { SafeListing, SafeUser } from "@/app/types";
 import Image from "next/image";
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { IoBedOutline } from "react-icons/io5";
 import { LiaBathSolid } from "react-icons/lia";
 import { RxDimensions } from "react-icons/rx";
 import HeartButton from "../HeartButton";
 import { useRouter } from "next/navigation";
+import Button from "../buttons/Button";
 
 interface ListingCardProps {
   currentUser?: SafeUser | null;
   data: SafeListing;
+  viewingDate?: string;
   actionId?: string;
   actionLabel?: string;
   onAction?: (id: string) => void;
@@ -22,12 +24,39 @@ interface ListingCardProps {
 const ListingCard: React.FC<ListingCardProps> = ({
   currentUser,
   data,
+  viewingDate,
   actionId,
-  onAction,
   actionLabel,
+  onAction,
   isDisabled,
 }) => {
   const router = useRouter();
+
+  const date = useMemo(() => {
+    if (!viewingDate) return;
+
+    let date = new Date(viewingDate);
+
+    let formatedDate = date.toLocaleDateString("en-US");
+
+    let hour = date.toLocaleTimeString("en-US");
+
+    return `${hour}, ${formatedDate}`;
+  }, [viewingDate]);
+
+  console.log(date);
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation();
+
+      if (!onAction || !actionId) return;
+
+      onAction(actionId);
+    },
+    [actionId, onAction]
+  );
+
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
@@ -75,6 +104,20 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <div className="text-xs">200 sqft</div>
           </div>
         </div>
+        {viewingDate && data.category !== "Shortlet" && (
+          <div className="w-full mt-3 py-2 flex flex-row items-center justify-center text-sm bg-slate-200 border-y">
+            {date}
+          </div>
+        )}
+        {actionLabel && actionId && onAction && (
+          <div className="mt-4 w-full">
+            <Button
+              title={actionLabel}
+              onClick={handleClick}
+              isDisabled={isDisabled}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
